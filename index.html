@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exclusive Wallet — Sistema de Autenticação Blockchain para Marcas de Luxo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold-primary: #D4AF37;
+      --gold-secondary: #F4E4B8;
+      --gold-accent: #B8860B;
+      --platinum: #E5E4E2;
+      --carbon: #1A1A1A;
+      --obsidian: #0A0A0A;
+      --diamond: #B9F2FF;
+      --transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --shadow-luxury: 0 25px 50px rgba(0, 0, 0, 0.1), 0 15px 30px rgba(0, 0, 0, 0.08);
+      --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.25);
+      --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);
+      --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%);
+      --gradient-card: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(244, 228, 184, 0.05) 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gradient-dark);
+      color: #F0F0F0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .luxury-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* HEADER LUXUOSO */
+    .luxury-header {
+      padding: 30px 0;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      position: relative;
+    }
+
+    .luxury-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100px;
+      height: 2px;
+      background: var(--gradient-gold);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--gradient-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--carbon);
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .logo-text {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+    }
+
+    .logo-subtitle {
+      font-size: 10px;
+      letter-spacing: 5px;
+      color: var(--platinum);
+      margin-top: 5px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-link {
+      color: var(--platinum);
+      text-decoration: none;
+      font-weight: 400;
+      letter-spacing: 1px;
+      position: relative;
+      transition: var(--transition);
+      font-size: 15px;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gradient-gold);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      color: var(--gold-primary);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background: var(--gradient-gold);
+      color: var(--carbon);
+      border: none;
+      padding: 14px 28px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 14px;
+      box-shadow: var(--shadow-gold);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+    }
+
+    /* HERO SECTION LUXUOSA */
+    .luxury-hero {
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(244, 228, 184, 0.1) 0%, transparent 50%);
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--gold-primary);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: 64px;
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 30px;
+      color: var(--gold-primary);
+      letter-spacing: 2px;
+    }
+
+    .hero-subtitle {
+      font-size: 22px;
+      color: var(--platinum);
+      margin-bottom: 50px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold-primary);
+      border: 1px solid var(--gold-primary);
+      padding: 14px 28px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 14px;
+    }
+
+    .btn-outline:hover {
+      background: rgba(212, 175, 55, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* FEATURES SECTION */
+    .luxury-features {
+      padding: 120px 0;
+      background: rgba(10, 10, 10, 0.5);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 42px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--platinum);
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+    }
+
+    .feature-card {
+      background: rgba(26, 26, 26, 0.8);
+      padding: 50px 40px;
+      border-radius: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: var(--gradient-gold);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-luxury);
+      border-color: var(--gold-primary);
+    }
+
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--gradient-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      color: var(--carbon);
+      font-size: 24px;
+    }
+
+    .feature-title {
+      font-family: 'Cinzel', serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      margin-bottom: 20px;
+    }
+
+    .feature-description {
+      color: var(--platinum);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* PARTNERS SECTION */
+    .luxury-partners {
+      padding: 100px 0;
+      background: rgba(212, 175, 55, 0.03);
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+
+    .partner-logo {
+      background: rgba(26, 26, 26, 0.8);
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      transition: var(--transition);
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      color: var(--gold-primary);
+      letter-spacing: 2px;
+    }
+
+    .partner-logo:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold-primary);
+      box-shadow: var(--shadow-gold);
+    }
+
+    /* HOW IT WORKS SECTION */
+    .luxury-process {
+      padding: 120px 0;
+    }
+
+    .process-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 80px;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: var(--gradient-gold);
+      z-index: 1;
+    }
+
+    .process-step {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      padding: 0 20px;
+    }
+
+    .step-number {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 30px;
+      color: var(--carbon);
+      font-size: 24px;
+      font-weight: 600;
+      font-family: 'Cinzel', serif;
+      box-shadow: var(--shadow-gold);
+    }
+
+    .step-title {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      margin-bottom: 15px;
+    }
+
+    .step-description {
+      color: var(--platinum);
+      font-size: 16px;
+    }
+
+    /* CTA SECTION */
+    .luxury-cta {
+      padding: 120px 0;
+      background: rgba(212, 175, 55, 0.05);
+      text-align: center;
+    }
+
+    .cta-title {
+      font-family: 'Cinzel', serif;
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+    }
+
+    .cta-description {
+      font-size: 20px;
+      color: var(--platinum);
+      max-width: 700px;
+      margin: 0 auto 50px;
+      font-weight: 300;
+    }
+
+    /* FOOTER LUXUOSO */
+    .luxury-footer {
+      padding: 80px 0 40px;
+      background: var(--obsidian);
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 50px;
+      margin-bottom: 60px;
+    }
+
+    .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    .footer-description {
+      color: var(--platinum);
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 400px;
+    }
+
+    .footer-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-link {
+      margin-bottom: 15px;
+    }
+
+    .footer-link a {
+      color: var(--platinum);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 15px;
+    }
+
+    .footer-link a:hover {
+      color: var(--gold-primary);
+    }
+
+    .footer-bottom {
+      padding-top: 40px;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      text-align: center;
+      color: var(--platinum);
+      font-size: 14px;
+    }
+
+    /* ANIMAÇÕES */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-element {
+      animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 1024px) {
+      .hero-title {
+        font-size: 48px;
+      }
+      
+      .process-steps {
+        flex-direction: column;
+        gap: 50px;
+      }
+      
+      .process-steps::before {
+        display: none;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hero-title {
+        font-size: 36px;
+      }
+      
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER LUXUOSO -->
+  <header class="luxury-header">
+    <div class="luxury-container">
+      <div class="header-content">
+        <div class="logo">
+          <div class="logo-icon">
+            <i class="fas fa-crown"></i>
+          </div>
+          <div>
+            <div class="logo-text">Exclusive Wallet</div>
+            <div class="logo-subtitle">Blockchain Authentication</div>
+          </div>
+        </div>
+        
+        <nav class="nav-links">
+          <a href="#features" class="nav-link">Tecnologia</a>
+          <a href="#process" class="nav-link">Como Funciona</a>
+          <a href="#partners" class="nav-link">Parcerias</a>
+          <a href="#contact" class="nav-link">Contato</a>
+        </nav>
+        
+        <button class="cta-button">
+          <i class="fas fa-gem"></i> Solicitar Demonstração
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="luxury-hero">
+    <div class="hero-background"></div>
+    <div class="luxury-container">
+      <div class="hero-content animate-element">
+        <div class="hero-badge">
+          <i class="fas fa-star"></i> Tecnologia Exclusiva para Marcas de Luxo
+        </div>
+        <h1 class="hero-title">
+          Autenticação Blockchain<br>para Produtos Premium
+        </h1>
+        <p class="hero-subtitle">
+          Transforme cada produto de luxo em um ativo digital exclusivo com nossa tecnologia de wallet integrada e QR code autenticado.
+        </p>
+        
+        <div class="hero-cta">
+          <button class="cta-button">
+            <i class="fas fa-play-circle"></i> Ver Demonstração
+          </button>
+          <button class="btn-outline">
+            <i class="fas fa-file-contract"></i> Proposta Comercial
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section id="features" class="luxury-features">
+    <div class="luxury-container">
+      <div class="section-header animate-element">
+        <h2 class="section-title">Tecnologia de Autenticação Premium</h2>
+        <p class="section-subtitle">Sistema completo de validação e rastreabilidade para produtos de alto valor</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card animate-element delay-1">
+          <div class="feature-icon">
+            <i class="fas fa-qrcode"></i>
+          </div>
+          <h3 class="feature-title">QR Code Exclusivo</h3>
+          <p class="feature-description">
+            Cada produto recebe um QR code único e criptografado que conecta diretamente ao sistema blockchain, garantindo autenticidade e procedência.
+          </p>
+        </div>
+        
+        <div class="feature-card animate-element delay-2">
+          <div class="feature-icon">
+            <i class="fas fa-wallet"></i>
+          </div>
+          <h3 class="feature-title">Wallet Digital Integrada</h3>
+          <p class="feature-description">
+            Sistema de carteira digital que armazena certificados de autenticidade, histórico de propriedade e documentos exclusivos do produto.
+          </p>
+        </div>
+        
+        <div class="feature-card animate-element delay-3">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="feature-title">Proteção Antifalsificação</h3>
+          <p class="feature-description">
+            Tecnologia blockchain imutável que previne falsificações e garante a exclusividade de cada item em edições limitadas.
+          </p>
+        </div>
+        
+        <div class="feature-card animate-element delay-1">
+          <div class="feature-icon">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <h3 class="feature-title">Certificado Digital</h3>
+          <p class="feature-description">
+            Certificado de autenticidade digital que acompanha o produto por toda sua vida útil, aumentando seu valor como item colecionável.
+          </p>
+        </div>
+        
+        <div class="feature-card animate-element delay-2">
+          <div class="feature-icon">
+            <i class="fas fa-history"></i>
+          </div>
+          <h3 class="feature-title">Histórico de Propriedade</h3>
+          <p class="feature-description">
+            Rastreabilidade completa da cadeia de custódia, desde a fabricação até o proprietário atual, criando uma proveniência verificável.
+          </p>
+        </div>
+        
+        <div class="feature-card animate-element delay-3">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="feature-title">Valorização de Ativos</h3>
+          <p class="feature-description">
+            Produtos autenticados via blockchain tendem a valorizar mais no mercado secundário, criando um ecossistema de luxo mais valioso.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS SECTION -->
+  <section id="partners" class="luxury-partners">
+    <div class="luxury-container">
+      <div class="section-header animate-element">
+        <h2 class="section-title">Parcerias de Excelência</h2>
+        <p class="section-subtitle">Tecnologia desenvolvida para as marcas mais exclusivas do mercado</p>
+      </div>
+      
+      <div class="partners-grid">
+        <div class="partner-logo animate-element delay-1">LOUIS VUITTON</div>
+        <div class="partner-logo animate-element delay-2">GUCCI</div>
+        <div class="partner-logo animate-element delay-3">CARTIER</div>
+        <div class="partner-logo animate-element delay-1">HERMÈS</div>
+        <div class="partner-logo animate-element delay-2">ROLEX</div>
+        <div class="partner-logo animate-element delay-3">TIFFANY & CO.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS SECTION -->
+  <section id="process" class="luxury-process">
+    <div class="luxury-container">
+      <div class="section-header animate-element">
+        <h2 class="section-title">Como Funciona a Tecnologia</h2>
+        <p class="section-subtitle">Implementação simples e elegante para produtos de luxo</p>
+      </div>
+      
+      <div class="process-steps">
+        <div class="process-step animate-element delay-1">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Integração</h3>
+          <p class="step-description">
+            Implementamos o sistema de QR code exclusivo em seus produtos durante o processo de fabricação.
+          </p>
+        </div>
+        
+        <div class="process-step animate-element delay-2">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Ativação</h3>
+          <p class="step-description">
+            Cada produto é registrado no blockchain com informações exclusivas e certificado digital.
+          </p>
+        </div>
+        
+        <div class="process-step animate-element delay-3">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Autenticação</h3>
+          <p class="step-description">
+            Clientes escaneiam o QR code para acessar o wallet digital com certificado e histórico do produto.
+          </p>
+        </div>
+        
+        <div class="process-step animate-element delay-1">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Valorização</h3>
+          <p class="step-description">
+            Produtos autenticados ganham valor no mercado secundário com proveniência verificável.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section id="contact" class="luxury-cta">
+    <div class="luxury-container">
+      <div class="animate-element">
+        <h2 class="cta-title">Eleve o Valor da Sua Marca</h2>
+        <p class="cta-description">
+          Junte-se às marcas de luxo que estão transformando produtos físicos em ativos digitais exclusivos com nossa tecnologia blockchain.
+        </p>
+        
+        <div class="hero-cta">
+          <button class="cta-button">
+            <i class="fas fa-crown"></i> Agendar Apresentação
+          </button>
+          <button class="btn-outline">
+            <i class="fas fa-download"></i> Baixar Whitepaper
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="luxury-footer">
+    <div class="luxury-container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <div class="footer-logo">Exclusive Wallet</div>
+          <p class="footer-description">
+            Tecnologia de autenticação blockchain para produtos de luxo. Transformando itens físicos em ativos digitais exclusivos com certificação verificável.
+          </p>
+        </div>
+        
+        <div class="footer-links-group">
+          <h3 class="footer-heading">Tecnologia</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#">Sistema Blockchain</a></li>
+            <li class="footer-link"><a href="#">Wallet Digital</a></li>
+            <li class="footer-link"><a href="#">QR Code Exclusivo</a></li>
+            <li class="footer-link"><a href="#">Certificação</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links-group">
+          <h3 class="footer-heading">Empresa</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#">Sobre Nós</a></li>
+            <li class="footer-link"><a href="#">Parcerias</a></li>
+            <li class="footer-link"><a href="#">Cases de Sucesso</a></li>
+            <li class="footer-link"><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links-group">
+          <h3 class="footer-heading">Contato</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#">Solicitar Demonstração</a></li>
+            <li class="footer-link"><a href="#">Orçamento</a></li>
+            <li class="footer-link"><a href="#">Suporte</a></li>
+            <li class="footer-link"><a href="#">Trabalhe Conosco</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Exclusive Wallet. Todos os direitos reservados. Tecnologia blockchain para o mercado de luxo.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Animação de entrada suave
+    document.addEventListener('DOMContentLoaded', function() {
+      // Adiciona classe de animação aos elementos
+      const animateElements = document.querySelectorAll('.animate-element');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      animateElements.forEach(element => {
+        element.style.opacity = 0;
+        element.style.transform = 'translateY(40px)';
+        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(element);
+      });
+      
+      // Smooth scroll para links internos
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
