@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVZ - Parceria para Desenvolvedores | Economia Verde</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #000000, #1a1a1a, #0d1b0d);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #d4af37, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #22c55e;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #d4af37, #22c55e);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(26,26,26,0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="g" cx="50%" cy="50%"><stop offset="0%" stop-color="%2322c55e" stop-opacity="0.1"/><stop offset="100%" stop-color="%23000" stop-opacity="0"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23g)"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #d4af37, #22c55e, #e8b4b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #e5e5e5;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37, #22c55e);
+            color: #000;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3), 0 0 20px rgba(233, 180, 184, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4), 0 0 30px rgba(233, 180, 184, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            box-shadow: 0 8px 25px rgba(233, 180, 184, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: #d4af37;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(233, 180, 184, 0.3);
+        }
+
+        /* Green Economy Section */
+        .green-economy {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #0a1a0a, #1a1a1a);
+            position: relative;
+        }
+
+        .green-economy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%2322c55e" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #22c55e, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .green-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .green-card {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .green-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .green-card:hover::before {
+            opacity: 1;
+        }
+
+        .green-card:hover {
+            transform: translateY(-10px);
+            border-color: #22c55e;
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
+        }
+
+        .green-icon {
+            font-size: 3rem;
+            color: #22c55e;
+            margin-bottom: 1rem;
+        }
+
+        .green-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #22c55e;
+        }
+
+        .green-card p {
+            color: #e5e5e5;
+            line-height: 1.6;
+        }
+
+        /* AVZ Token Section */
+        .avz-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a, #000000);
+        }
+
+        .avz-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .avz-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #d4af37, #e8b4b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .avz-text p {
+            font-size: 1.1rem;
+            color: #e5e5e5;
+            margin-bottom: 1.5rem;
+        }
+
+        .avz-features {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+        }
+
+        .feature-icon {
+            color: #d4af37;
+            font-size: 1.5rem;
+        }
+
+        .avz-visual {
+            position: relative;
+            text-align: center;
+        }
+
+        .token-animation {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2), rgba(34, 197, 94, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #d4af37;
+            animation: pulse 2s infinite;
+            border: 3px solid rgba(212, 175, 55, 0.5);
+        }
+
+        /* Partnership Section */
+        .partnership {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #0d1b0d, #1a1a1a);
+        }
+
+        .partnership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .partnership-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partnership-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .partnership-card:hover::before {
+            left: 100%;
+        }
+
+        .partnership-card:hover {
+            transform: translateY(-10px);
+            border-color: #d4af37;
+            box-shadow: 0 20px 40px rgba(233, 180, 184, 0.2);
+        }
+
+        .partnership-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #d4af37, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .partnership-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #d4af37;
+        }
+
+        .partnership-card p {
+            color: #e5e5e5;
+            margin-bottom: 2rem;
+        }
+
+        .partnership-card .btn {
+            margin-top: 1rem;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #22c55e, #d4af37, #e8b4b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            color: #e5e5e5;
+            margin-bottom: 3rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: #d4af37;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #22c55e;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 20px rgba(212, 175, 55, 0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .avz-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .partnership-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .token-animation {
+                width: 250px;
+                height: 250px;
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">AVZ</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#economia-verde">Economia Verde</a></li>
+                <li><a href="#token">Token AVZ</a></li>
+                <li><a href="#parceria">Parceria</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Transforme o Futuro com AVZ</h1>
+            <p>Junte-se à revolução da economia verde. Desenvolva aplicativos inovadores e receba tokens AVZ através de contratos de vesting inteligentes. Seu código pode mudar o mundo e gerar impacto real na agricultura sustentável em Angola.</p>
+            <div class="cta-buttons">
+                <a href="#parceria" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    Começar Parceria
+                </a>
+                <a href="#economia-verde" class="btn btn-secondary">
+                    <i class="fas fa-leaf"></i>
+                    Saiba Mais
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Green Economy Section -->
+    <section id="economia-verde" class="green-economy">
+        <div class="container">
+            <h2 class="section-title fade-in">A Revolução da Economia Verde</h2>
+            
+            <div class="green-grid">
+                <div class="green-card fade-in">
+                    <div class="green-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Agricultura Sustentável</h3>
+                    <p>Desenvolva aplicativos que revolucionem a agricultura em Angola e África. Tecnologias que aumentam a produtividade enquanto preservam o meio ambiente, criando um futuro mais verde e próspero para comunidades rurais.</p>
+                </div>
+
+                <div class="green-card fade-in">
+                    <div class="green-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h3>Economia Circular</h3>
+                    <p>Crie soluções que transformem resíduos em recursos. Aplicativos que conectam produtores, consumidores e recicladores, criando ciclos sustentáveis que beneficiam tanto o planeta quanto as comunidades locais.</p>
+                </div>
+
+                <div class="green-card fade-in">
+                    <div class="green-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <h3>Energia Renovável</h3>
+                    <p>Desenvolva plataformas que democratizem o acesso à energia limpa. Soluções que conectam comunidades a fontes renováveis, reduzindo custos e impacto ambiental enquanto geram oportunidades econômicas.</p>
+                </div>
+
+                <div class="green-card fade-in">
+                    <div class="green-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Gestão de Recursos</h3>
+                    <p>Crie tecnologias para otimizar o uso da água e recursos naturais. Aplicativos inteligentes que monitoram, conservam e distribuem recursos de forma eficiente, garantindo sustentabilidade para futuras gerações.</p>
+                </div>
+
+                <div class="green-card fade-in">
+                    <div class="green-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Educação Ambiental</h3>
+                    <p>Desenvolva jogos e aplicativos educativos que conscientizem sobre sustentabilidade. Plataformas interativas que ensinam práticas verdes de forma divertida e engajante, formando uma nova geração consciente.</p>
+                </div>
+
+                <div class="green-card fade-in">
+                    <div class="green-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Saúde Verde</h3>
+                    <p>Crie soluções de saúde que integrem bem-estar humano e ambiental. Aplicativos que promovem medicina preventiva, alimentação orgânica e estilos de vida sustentáveis, melhorando a qualidade de vida globalmente.</p>
+                </div>
+            </div>
+
+            <div class="fade-in" style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.2rem; color: #22c55e; max-width: 800px; margin: 0 auto;">
+                    A economia verde não é apenas uma tendência - é o futuro inevitável. Com o mercado global de tecnologias verdes projetado para atingir <strong>$2.5 trilhões até 2030</strong>, esta é sua oportunidade de estar na vanguarda da transformação que definirá as próximas décadas.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AVZ Token Section -->
+    <section id="token" class="avz-section">
+        <div class="container">
+            <div class="avz-content">
+                <div class="avz-text fade-in">
+                    <h2>Token AVZ: Seu Passaporte para o Futuro Verde</h2>
+                    <p>O AVZ não é apenas uma criptomoeda - é um token utilitário revolucionário que conecta inovação tecnológica com impacto ambiental real. Cada aplicativo desenvolvido gera valor que é distribuído de forma justa entre desenvolvedores e direcionado para projetos de agricultura sustentável em Angola.</p>
+                    
+                    <div class="avz-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div>
+                                <strong>Token Utilitário</strong><br>
+                                Não é especulação, é utilidade real com valor baseado no sucesso dos aplicativos
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <strong>Crescimento Sustentável</strong><br>
+                                Valor agregado através de receitas reais dos aplicativos e impacto mensurável
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-globe-africa"></i>
+                            </div>
+                            <div>
+                                <strong>Impacto Global</strong><br>
+                                Cada token contribui diretamente para projetos de agricultura sustentável em Angola
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div>
+                                <strong>Contratos Inteligentes</strong><br>
+                                Vesting transparente e automático baseado em marcos de desenvolvimento
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="avz-visual fade-in">
+                    <div class="token-animation">
+                        AVZ
+                    </div>
+                    <p style="margin-top: 2rem; color: #d4af37; font-weight: 600;">
+                        Valor Atual Projetado: R$ 0,200 - R$ 2,50<br>
+                        <small style="color: #888;">*Baseado em adoção e receitas dos aplicativos</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section id="parceria" class="partnership">
+        <div class="container">
+            <h2 class="section-title fade-in">Oportunidades de Parceria</h2>
+            
+            <div class="partnership-grid">
+                <div class="partnership-card fade-in">
+                    <div class="partnership-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Jogos Educativos</h3>
+                    <p>Desenvolva jogos que ensinem sustentabilidade, agricultura e consciência ambiental. Gamificação que educa enquanto diverte, criando impacto duradouro na mentalidade das pessoas sobre o meio ambiente.</p>
+                    <a href="#contato" class="btn btn-primary">
+                        <i class="fas fa-play"></i>
+                        Começar Projeto
+                    </a>
+                </div>
+
+                <div class="partnership-card fade-in">
+                    <div class="partnership-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Apps de Impacto</h3>
+                    <p>Crie aplicativos que resolvam problemas reais na agricultura, saúde e educação. Soluções práticas que melhoram vidas enquanto geram receita sustentável através do modelo de negócio AVZ.</p>
+                    <a href="#contato" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Propor Ideia
+                    </a>
+                </div>
+
+                <div class="partnership-card fade-in">
+                    <div class="partnership-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Soluções Cognitivas</h3>
+                    <p>Desenvolva aplicativos que estimulem o desenvolvimento cognitivo através de desafios ambientais. Plataformas que treinam a mente enquanto conscientizam sobre sustentabilidade.</p>
+                    <a href="#contato" class="btn btn-primary">
+                        <i class="fas fa-lightbulb"></i>
+                        Inovar Junto
+                    </a>
+                </div>
+
+                <div class="partnership-card fade-in">
+                    <div class="partnership-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3>Saúde Digital</h3>
+                    <p>Crie soluções de telemedicina e saúde preventiva para comunidades rurais. Aplicativos que democratizam o acesso à saúde enquanto promovem práticas sustentáveis de bem-estar.</p>
+                    <a href="#contato" class="btn btn-primary">
+                        <i class="fas fa-heart"></i>
+                        Salvar Vidas
+                    </a>
+                </div>
+
+                <div class="partnership-card fade-in">
+                    <div class="partnership-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Suporte Jurídico</h3>
+                    <p>Nossa equipe jurídica especializada cuida de todos os contratos, propriedade intelectual e aspectos legais. Você foca no desenvolvimento, nós cuidamos da proteção legal completa.</p>
+                    <a href="#contato" class="btn btn-secondary">
+                        <i class="fas fa-shield-alt"></i>
+                        Proteção Legal
+                    </a>
+                </div>
+
+                <div class="partnership-card fade-in">
+                    <div class="partnership-icon">
+                        <i class="fas fa-presentation"></i>
+                    </div>
+                    <h3>Pitch para Investidores</h3>
+                    <p>Apresentamos seu projeto para nossa rede de investidores especializados em tecnologia verde. Suporte completo para captação de recursos e escalabilidade global.</p>
+                    <a href="#contato" class="btn btn-secondary">
+                        <i class="fas fa-chart-line"></i>
+                        Buscar Investimento
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="cta-content fade-in">
+            <h2>Pronto para Transformar o Mundo?</h2>
+            <p>Não perca a oportunidade de estar na vanguarda da revolução verde. Junte-se a nós e desenvolva aplicativos que não apenas geram receita, mas criam um impacto positivo duradouro no planeta e nas comunidades.</p>
+            <div class="cta-buttons">
+                <a href="mailto:parceria@avz.com" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i>
+                    Iniciar Parceria Agora
+                </a>
+                <a href="https://wa.me/5511999999999" class="btn btn-secondary">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+            <p>&copy; 2025 AVZ. Todos os direitos reservados. Transformando o futuro através da economia verde.</p>
+            <p style="color: #22c55e; font-size: 0.9rem;">
+                "Cada linha de código pode plantar uma semente de mudança no mundo."
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.98)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            }
+        });
+
+        // Token animation enhancement
+        const tokenElement = document.querySelector('.token-animation');
+        if (tokenElement) {
+            setInterval(() => {
+                tokenElement.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    tokenElement.style.transform = 'scale(1)';
+                }, 200);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
+
