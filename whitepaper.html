@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whitepaper - Exclusive Wallet | Tecnologia Blockchain para Marcas de Luxo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-secondary: #F4E4B8;
+            --gold-accent: #B8860B;
+            --platinum: #E5E4E2;
+            --carbon: #1A1A1A;
+            --obsidian: #0A0A0A;
+            --diamond: #B9F2FF;
+            --transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow-luxury: 0 25px 50px rgba(0, 0, 0, 0.1), 0 15px 30px rgba(0, 0, 0, 0.08);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.25);
+            --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);
+            --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%);
+            --gradient-card: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(244, 228, 184, 0.05) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-dark);
+            color: #F0F0F0;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .luxury-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER LUXUOSO */
+        .luxury-header {
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .luxury-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: var(--gradient-gold);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--carbon);
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+        }
+
+        .logo-subtitle {
+            font-size: 10px;
+            letter-spacing: 5px;
+            color: var(--platinum);
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-link {
+            color: var(--platinum);
+            text-decoration: none;
+            font-weight: 400;
+            letter-spacing: 1px;
+            position: relative;
+            transition: var(--transition);
+            font-size: 15px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gradient-gold);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--gold-primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--gradient-gold);
+            color: var(--carbon);
+            border: none;
+            padding: 14px 28px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        /* HERO WHITEPAPER */
+        .whitepaper-hero {
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(244, 228, 184, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold-primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 52px;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--gold-primary);
+            letter-spacing: 2px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--platinum);
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .document-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--platinum);
+            font-size: 14px;
+        }
+
+        /* WHITEPAPER CONTENT */
+        .whitepaper-content {
+            padding: 80px 0;
+            background: rgba(10, 10, 10, 0.5);
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+        }
+
+        /* TABLE OF CONTENTS */
+        .toc-sidebar {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+
+        .toc-card {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(20px);
+        }
+
+        .toc-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--gradient-gold);
+            border-radius: 20px 0 0 20px;
+        }
+
+        .toc-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-item {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .toc-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+        }
+
+        .toc-link {
+            color: var(--platinum);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 15px;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .toc-link:hover {
+            color: var(--gold-primary);
+        }
+
+        .download-card {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            margin-top: 30px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+        }
+
+        .download-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--gradient-gold);
+            border-radius: 20px 0 0 20px;
+        }
+
+        .download-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 15px;
+        }
+
+        .download-button {
+            background: var(--gradient-gold);
+            color: var(--carbon);
+            border: none;
+            padding: 15px 30px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+            box-shadow: var(--shadow-gold);
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 60px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(20px);
+        }
+
+        .content-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: var(--gradient-gold);
+        }
+
+        .section-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin: 40px 0 20px;
+        }
+
+        .content-text {
+            color: var(--platinum);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--gradient-gold);
+            border-radius: 12px 0 0 12px;
+        }
+
+        .highlight-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--carbon);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .feature-content h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 10px;
+        }
+
+        .feature-content p {
+            color: var(--platinum);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+        }
+
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--platinum);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* FOOTER */
+        .luxury-footer {
+            padding: 80px 0 40px;
+            background: var(--obsidian);
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .footer-description {
+            color: var(--platinum);
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+
+        .footer-heading {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 15px;
+        }
+
+        .footer-link a {
+            color: var(--platinum);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 15px;
+        }
+
+        .footer-link a:hover {
+            color: var(--gold-primary);
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+            color: var(--platinum);
+            font-size: 14px;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-element {
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 1024px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .toc-sidebar {
+                position: relative;
+                top: 0;
+            }
+            
+            .hero-title {
+                font-size: 42px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .document-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .main-content {
+                padding: 40px 30px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER LUXUOSO -->
+    <header class="luxury-header">
+        <div class="luxury-container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div>
+                        <div class="logo-text">Exclusive Wallet</div>
+                        <div class="logo-subtitle">Blockchain Authentication</div>
+                    </div>
+                </div>
+                
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="#abstract" class="nav-link">Resumo</a>
+                    <a href="#technology" class="nav-link">Tecnologia</a>
+                    <a href="#contact" class="nav-link">Contato</a>
+                </nav>
+                
+                <button class="cta-button" onclick="downloadWhitepaper()">
+                    <i class="fas fa-download"></i> PDF Completo
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO WHITEPAPER -->
+    <section class="whitepaper-hero">
+        <div class="hero-background"></div>
+        <div class="luxury-container">
+            <div class="hero-content animate-element">
+                <div class="hero-badge">
+                    <i class="fas fa-file-contract"></i> Whitepaper Oficial
+                </div>
+                <h1 class="hero-title">
+                    Exclusive Wallet<br>Tecnologia Blockchain
+                </h1>
+                <p class="hero-subtitle">
+                    Documento técnico detalhando a implementação de sistema de autenticação blockchain para produtos de luxo e edições limitadas.
+                </p>
+                
+                <div class="document-info">
+                    <div class="info-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>Versão 2.1 • Janeiro 2024</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>28 páginas • 12.5 MB</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Para Marcas de Luxo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHITEPAPER CONTENT -->
+    <section class="whitepaper-content">
+        <div class="luxury-container">
+            <div class="content-wrapper">
+                <!-- TABLE OF CONTENTS -->
+                <div class="toc-sidebar">
+                    <div class="toc-card">
+                        <h3 class="toc-title">
+                            <i class="fas fa-list-ul"></i>
+                            Sumário
+                        </h3>
+                        <ul class="toc-list">
+                            <li class="toc-item">
+                                <a href="#abstract" class="toc-link">1. Resumo Executivo</a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#introduction" class="toc-link">2. Introdução</a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#problem" class="toc-link">3. Problema</a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#solution" class="toc-link">4. Solução</a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#technology" class="toc-link">5. Tecnologia</a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#implementation" class="toc-link">6. Implementação</a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#business" class="toc-link">7. Modelo de Negócio</a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#roadmap" class="toc-link">8. Roadmap</a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#conclusion" class="toc-link">9. Conclusão</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="download-card">
+                        <h4 class="download-title">
+                            <i class="fas fa-download"></i>
+                            Download Completo
+                        </h4>
+                        <p style="color: var(--platinum); font-size: 14px; margin-bottom: 20px;">
+                            Versão completa em PDF com todos os detalhes técnicos e casos de uso.
+                        </p>
+                        <button class="download-button" onclick="downloadWhitepaper()">
+                            <i class="fas fa-file-pdf"></i> Baixar Whitepaper
+                        </button>
+                    </div>
+                </div>
+
+                <!-- MAIN CONTENT -->
+                <div class="main-content">
+                    <!-- RESUMO EXECUTIVO -->
+                    <section id="abstract" class="content-section">
+                        <h2 class="section-title">1. Resumo Executivo</h2>
+                        <p class="content-text">
+                            O Exclusive Wallet representa uma revolução na autenticação e valorização de produtos de luxo através da tecnologia blockchain. Esta solução exclusiva combina QR codes criptografados, certificação digital e rastreabilidade imutável para criar um ecossistema de confiança e exclusividade.
+                        </p>
+                        
+                        <div class="highlight-box">
+                            <h4 class="highlight-title">
+                                <i class="fas fa-bullseye"></i>
+                                Objetivo Principal
+                            </h4>
+                            <p class="content-text">
+                                Transformar produtos físicos de luxo em ativos digitais verificáveis, aumentando seu valor intrínseco e criando uma experiência única para clientes premium através da certificação blockchain.
+                            </p>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">+85%</div>
+                                <div class="stat-label">Redução em Falsificações</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">+40%</div>
+                                <div class="stat-label">Valorização no Mercado</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">99.9%</div>
+                                <div class="stat-label">Disponibilidade do Sistema</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">+60%</div>
+                                <div class="stat-label">Engajamento do Cliente</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- INTRODUÇÃO -->
+                    <section id="introduction" class="content-section">
+                        <h2 class="section-title">2. Introdução</h2>
+                        <p class="content-text">
+                            O mercado de luxo global enfrenta desafios significativos com falsificações e falta de transparência na cadeia de custódia. Estima-se que as perdas anuais com produtos falsificados ultrapassem US$ 500 bilhões, afetando diretamente a integridade das marcas premium.
+                        </p>
+                        
+                        <h3 class="section-subtitle">O Novo Paradigma do Luxo</h3>
+                        <p class="content-text">
+                            Consumidores modernos de produtos de luxo demandam não apenas qualidade superior, mas também transparência, autenticidade comprovada e experiências digitais exclusivas. O Exclusive Wallet atende precisamente a essas necessidades através de:
+                        </p>
+
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-fingerprint"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Identidade Digital Única</h4>
+                                    <p>Cada produto recebe uma identidade blockchain imutável e verificável</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Proteção Antifalsificação</h4>
+                                    <p>Sistema criptográfico que impede duplicação e falsificação</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-history"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Histórico Imutável</h4>
+                                    <p>Registro permanente de toda a cadeia de custódia do produto</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Valorização de Ativos</h4>
+                                    <p>Produtos autenticados valorizam significativamente no mercado secundário</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- TECNOLOGIA -->
+                    <section id="technology" class="content-section">
+                        <h2 class="section-title">5. Arquitetura Tecnológica</h2>
+                        <p class="content-text">
+                            O Exclusive Wallet utiliza uma arquitetura multi-camada que combina blockchain, criptografia avançada e interfaces intuitivas para criar uma experiência premium tanto para marcas quanto para consumidores finais.
+                        </p>
+
+                        <h3 class="section-subtitle">Componentes Principais</h3>
+
+                        <div class="highlight-box">
+                            <h4 class="highlight-title">
+                                <i class="fas fa-qrcode"></i>
+                                Sistema de QR Code Exclusivo
+                            </h4>
+                            <p class="content-text">
+                                Cada produto recebe um QR code criptografado único que serve como portal digital para todas as informações do produto. Este código é:
+                            </p>
+                            <ul style="color: var(--platinum); margin-left: 20px; margin-top: 15px;">
+                                <li style="margin-bottom: 8px;">Impossível de duplicar ou falsificar</li>
+                                <li style="margin-bottom: 8px;">Vinculado permanentemente ao produto físico</li>
+                                <li style="margin-bottom: 8px;">Capaz de armazenar múltiplas informações em camadas</li>
+                                <li>Compatível com qualquer smartphone moderno</li>
+                            </ul>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4 class="highlight-title">
+                                <i class="fas fa-wallet"></i>
+                                Wallet Digital Premium
+                            </h4>
+                            <p class="content-text">
+                                A wallet digital exclusiva armazena e gerencia todos os ativos digitais associados ao produto físico, incluindo:
+                            </p>
+                            <ul style="color: var(--platinum); margin-left: 20px; margin-top: 15px;">
+                                <li style="margin-bottom: 8px;">Certificado de autenticidade digital</li>
+                                <li style="margin-bottom: 8px;">Histórico completo de propriedade</li>
+                                <li style="margin-bottom: 8px;">Documentação exclusiva da marca</li>
+                                <li style="margin-bottom: 8px;">Conteúdo especial e experiências VIP</li>
+                                <li>Prova de procedência e autenticidade</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="section-subtitle">Blockchain & Segurança</h3>
+                        <p class="content-text">
+                            Utilizamos uma abordagem híbrida de blockchain que combina a segurança de redes públicas com a privacidade de soluções permissionadas:
+                        </p>
+
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-link"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Ethereum & Polygon</h4>
+                                    <p>Infraestrutura blockchain robusta e amplamente adotada</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Criptografia AES-256</h4>
+                                    <p>Padrão militar de criptografia para máxima segurança</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>IPFS Storage</h4>
+                                    <p>Armazenamento descentralizado para documentos e mídia</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>API REST Segura</h4>
+                                    <p>Integração simplificada com sistemas existentes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- IMPLEMENTAÇÃO -->
+                    <section id="implementation" class="content-section">
+                        <h2 class="section-title">6. Processo de Implementação</h2>
+                        <p class="content-text">
+                            A implementação do Exclusive Wallet é projetada para ser simples e não disruptiva, adaptando-se aos processos existentes de fabricação e distribuição de produtos de luxo.
+                        </p>
+
+                        <div class="highlight-box">
+                            <h4 class="highlight-title">
+                                <i class="fas fa-cogs"></i>
+                                Integração com Produção
+                            </h4>
+                            <p class="content-text">
+                                O sistema se integra perfeitamente com linhas de produção existentes através de:
+                            </p>
+                            <ul style="color: var(--platinum); margin-left: 20px; margin-top: 15px;">
+                                <li style="margin-bottom: 8px;"><strong>Etapa 1:</strong> Geração de identidade digital única para cada produto</li>
+                                <li style="margin-bottom: 8px;"><strong>Etapa 2:</strong> Impressão de QR code exclusivo durante fabricação</li>
+                                <li style="margin-bottom: 8px;"><strong>Etapa 3:</strong> Registro no blockchain durante controle de qualidade</li>
+                                <li style="margin-bottom: 8px;"><strong>Etapa 4:</strong> Ativação do wallet digital no ponto de venda</li>
+                                <li><strong>Etapa 5:</strong> Entrega da experiência premium ao cliente final</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="section-subtitle">Timeline de Implementação</h3>
+                        <p class="content-text">
+                            O processo completo de implementação leva entre 4-8 semanas, dependendo da complexidade da integração e do volume de produtos:
+                        </p>
+
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-calendar-week"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Semana 1-2: Análise</h4>
+                                    <p>Diagnóstico completo dos processos atuais e definição de escopo</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-sliders-h"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Semana 3-4: Configuração</h4>
+                                    <p>Personalização do sistema e integração com infraestrutura existente</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-vial"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Semana 5-6: Testes</h4>
+                                    <p>Validação completa em ambiente controlado e treinamento da equipe</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Semana 7-8: Lançamento</h4>
+                                    <p>Implementação em produção e acompanhamento pós-lançamento</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- MODELO DE NEGÓCIO -->
+                    <section id="business" class="content-section">
+                        <h2 class="section-title">7. Modelo de Negócio & Parcerias</h2>
+                        <p class="content-text">
+                            Desenvolvemos um modelo de parceria flexível que se adapta às necessidades específicas de cada marca de luxo, garantindo benefícios mútuos e crescimento sustentável.
+                        </p>
+
+                        <div class="highlight-box">
+                            <h4 class="highlight-title">
+                                <i class="fas fa-handshake"></i>
+                                Estrutura de Parceria
+                            </h4>
+                            <p class="content-text">
+                                Oferecemos três modelos principais de parceria, cada um desenhado para diferentes tipos de marcas e volumes de produção:
+                            </p>
+                        </div>
+
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-gem"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Modelo Premium</h4>
+                                    <p><strong>Para grandes marcas:</strong> Receita compartilhada 50/50 sobre o valor agregado, com mínimo garantido</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Modelo Royalty</h4>
+                                    <p><strong>Para marcas estabelecidas:</strong> Royalty fixo por unidade + percentual sobre valorização secundária</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Modelo Enterprise</h4>
+                                    <p><strong>Para grupos de luxo:</strong> Licenciamento anual + implementação personalizada</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="section-subtitle">Projeção Financeira</h3>
+                        <p class="content-text">
+                            Com base em implementações piloto, projetamos os seguintes benefícios financeiros para parceiros:
+                        </p>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">R$ 3.000+</div>
+                                <div class="stat-label">Valor Agregado por Unidade</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">20-50%</div>
+                                <div class="stat-label">Aumento de Margem</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">3-5x</div>
+                                <div class="stat-label">Valorização Secundária</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">0%</div>
+                                <div class="stat-label">Custo Inicial</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- CONCLUSÃO -->
+                    <section id="conclusion" class="content-section">
+                        <h2 class="section-title">9. Conclusão & Próximos Passos</h2>
+                        <p class="content-text">
+                            O Exclusive Wallet representa não apenas uma solução tecnológica, mas uma transformação fundamental na forma como produtos de luxo são autenticados, valorizados e experimentados.
+                        </p>
+
+                        <div class="highlight-box">
+                            <h4 class="highlight-title">
+                                <i class="fas fa-flag-checkered"></i>
+                                Chamada para Ação
+                            </h4>
+                            <p class="content-text">
+                                Convidamos marcas de luxo visionárias a se juntarem a nós nesta revolução. Oferecemos:
+                            </p>
+                            <ul style="color: var(--platinum); margin-left: 20px; margin-top: 15px;">
+                                <li style="margin-bottom: 8px;"><strong>Demonstração Personalizada:</strong> Apresentação exclusiva para sua equipe executiva</li>
+                                <li style="margin-bottom: 8px;"><strong>Projeto Piloto:</strong> Implementação limitada sem custo para validação</li>
+                                <li style="margin-bottom: 8px;"><strong>Análise de ROI:</strong> Estudo detalhado do potencial financeiro para sua marca</li>
+                                <li><strong>Contracto Flexível:</strong> Modelo adaptado às suas necessidades específicas</li>
+                            </ul>
+                        </div>
+
+                        <div class="content-text" style="text-align: center; margin-top: 40px; padding: 30px; background: rgba(212, 175, 55, 0.05); border-radius: 12px;">
+                            <h3 style="font-family: 'Cinzel', serif; color: var(--gold-primary); margin-bottom: 20px;">
+                                <i class="fas fa-crown"></i> Entre em Contato
+                            </h3>
+                            <p style="margin-bottom: 20px;">
+                                Agende uma apresentação exclusiva e descubra como o Exclusive Wallet pode transformar seus produtos de luxo em ativos digitais de valor incomparável.
+                            </p>
+                            <button class="cta-button" onclick="scheduleMeeting()">
+                                <i class="fas fa-calendar-check"></i> Agendar Apresentação
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="luxury-footer">
+        <div class="luxury-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">Exclusive Wallet</div>
+                    <p class="footer-description">
+                        Tecnologia de autenticação blockchain para produtos de luxo. Transformando itens físicos em ativos digitais exclusivos com certificação verificável.
+                    </p>
+                </div>
+                
+                <div class="footer-links-group">
+                    <h3 class="footer-heading">Tecnologia</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Sistema Blockchain</a></li>
+                        <li class="footer-link"><a href="#">Wallet Digital</a></li>
+                        <li class="footer-link"><a href="#">QR Code Exclusivo</a></li>
+                        <li class="footer-link"><a href="#">Certificação</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-group">
+                    <h3 class="footer-heading">Empresa</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="index.html">Home</a></li>
+                        <li class="footer-link"><a href="#">Sobre Nós</a></li>
+                        <li class="footer-link"><a href="#">Parcerias</a></li>
+                        <li class="footer-link"><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-group">
+                    <h3 class="footer-heading">Recursos</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Documentação</a></li>
+                        <li class="footer-link"><a href="#">Casos de Uso</a></li>
+                        <li class="footer-link"><a href="#">FAQ</a></li>
+                        <li class="footer-link"><a href="#">Suporte</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Exclusive Wallet. Todos os direitos reservados. Tecnologia blockchain para o mercado de luxo.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Função para download do whitepaper
+        function downloadWhitepaper() {
+            // Em uma implementação real, isso faria o download do PDF
+            // Por enquanto é uma simulação
+            alert('Download do Whitepaper Exclusive Wallet iniciado! Em uma implementação real, o arquivo PDF seria baixado.');
+            
+            // Simulação de tracking de download
+            console.log('Whitepaper download requested');
+        }
+
+        // Função para agendar reunião
+        function scheduleMeeting() {
+            alert('Redirecionando para o agendamento de apresentação...');
+            // Em produção, isso redirecionaria para uma página de agendamento
+            // window.location.href = 'https://calendly.com/exclusive-wallet/demo';
+        }
+
+        // Smooth scroll para âncoras
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Animação de entrada dos elementos
+            const animateElements = document.querySelectorAll('.animate-element');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(40px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
