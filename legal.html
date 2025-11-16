@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AVZ Infra — Legal & Compliance</title>
+
+    <!-- Fontes e ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root{
+            --gold-primary: #D4AF37;
+            --platinum:#E5E4E2;
+            --dark-bg: #0A0A0A;
+            --panel: rgba(255,255,255,0.03);
+            --glass: rgba(255,255,255,0.04);
+            --transition: all 0.35s ease;
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg,#0a0a0a 0%, #080808 100%);
+            color:#fff;
+            line-height:1.6;
+            padding-top:88px;
+        }
+        .header{
+            position:fixed; top:0; left:0; right:0;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom:1px solid rgba(212,175,55,0.18);
+            z-index:1000;
+        }
+        .nav-container{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem}
+        .logo{font-family:'Cinzel',serif;font-size:1.45rem;background:linear-gradient(135deg,#D4AF37,#F4E4B8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .nav-menu{display:flex;gap:1.6rem;list-style:none}
+        .nav-menu a{color:var(--platinum);text-decoration:none;font-weight:500;font-family:'Marcellus',serif}
+        .container{max-width:1100px;margin:0 auto;padding:3rem 1rem}
+        .hero{padding:2.5rem 0 1.5rem}
+        .section-title{font-family:'Cinzel',serif;font-size:2.4rem;color:var(--gold-primary);margin-bottom:1rem}
+        .card{background:var(--panel);border-radius:12px;padding:1.6rem;margin-bottom:1rem;border:1px solid rgba(212,175,55,0.08);box-shadow:0 8px 30px rgba(0,0,0,0.4)}
+        h3{font-family:'Cinzel',serif;color:var(--gold-primary);margin-bottom:0.6rem}
+        p, li{color:#d8d8d8;font-size:1rem}
+        ul{margin-left:1.25rem;margin-bottom:0.5rem}
+        .muted{color:#bfbfbf;font-size:0.95rem}
+        .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.6rem 1rem;border-radius:6px;border:1px solid rgba(212,175,55,0.12);background:linear-gradient(90deg,rgba(212,175,55,0.06),transparent);color:var(--platinum);text-decoration:none}
+        footer{margin-top:2.5rem;padding:2rem 1rem;background:#000;border-top:1px solid rgba(212,175,55,0.12);text-align:center}
+        .small-note{font-size:0.9rem;color:#bdbdbd;margin-top:1rem}
+        nav .legal-link{color:var(--gold-primary);font-weight:600}
+        @media(max-width:768px){
+            .nav-menu{display:none}
+            body{padding-top:100px}
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <nav class="nav-container">
+        <div style="display:flex;gap:1rem;align-items:center">
+            <div class="logo">AVZ INFRA</div>
+            <div class="muted" style="font-size:0.78rem;letter-spacing:1px">TECHNOLOGY INFRASTRUCTURE</div>
+        </div>
+
+        <ul class="nav-menu" id="navMenuTop">
+            <li><a href="indexpage.html">Início</a></li>
+            <li><a href="indexpage.html#sobre">Sobre</a></li>
+            <li><a href="indexpage.html#produtos">Produtos</a></li>
+            <li><a href="indexpage.html#contato">Contato</a></li>
+            <li><a href="legal.html" class="legal-link">Legal & Compliance</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <h1 class="section-title">Documentação Legal — AVZ Infra</h1>
+        <p class="muted">Políticas, estrutura jurídica, obrigações e termos preparados para investidores, parceiros institucionais e auditorias.</p>
+    </section>
+
+    <!-- 1 -->
+    <section class="card" id="termos">
+        <h3>1. Termos de Uso</h3>
+        <p>
+            Este documento estabelece as condições de utilização das plataformas e tecnologias da AVZ Infra,
+            destinadas a usuários corporativos, investidores e parceiros institucionais. Nossos serviços têm
+            caráter tecnológico e descentralizado, não havendo custódia direta de ativos salvo produtos que
+            expressem isso formalmente.
+        </p>
+        <ul>
+            <li>O usuário mantém controle exclusivo de suas chaves.</li>
+            <li>A AVZ Infra não presta consultoria financeira ou imobiliária.</li>
+            <li>Projetos institucionais possuem contratos próprios e independentes.</li>
+        </ul>
+    </section>
+
+    <!-- 2 -->
+    <section class="card" id="privacidade">
+        <h3>2. Política de Privacidade</h3>
+        <p>
+            A AVZ Infra adota práticas de segurança e tratamento mínimo de dados,
+            com foco em compliance, prevenção a ilícitos e auditoria operacional.
+        </p>
+        <ul>
+            <li>Dados coletados visam identificação, exigências legais, suporte ou auditoria.</li>
+            <li>Informações são mantidas pelo tempo necessário à finalidade legal ou contratual.</li>
+            <li>Nenhum dado é vendido ou utilizado comercialmente.</li>
+            <li>Para tokenização imobiliária, dados adicionais podem ser exigidos.</li>
+        </ul>
+    </section>
+
+    <!-- 3 -->
+    <section class="card" id="custodia">
+        <h3>3. Declaração de Custódia e Responsabilidade</h3>
+        <p>
+            A Exclusive Wallet e demais soluções operam sob modelo
+            <strong>non-custodial</strong>. A responsabilidade total por chaves, seed phrase e controle de ativos é do usuário.
+        </p>
+        <ul>
+            <li>Execução local (client-side) garante independência e descentralização.</li>
+            <li>AVZ Infra não armazena informações sensíveis.</li>
+            <li>Perdas decorrentes de acesso indevido ao dispositivo são responsabilidade do titular.</li>
+        </ul>
+    </section>
+
+    <!-- 4 -->
+    <section class="card" id="compliance">
+        <h3>4. Governança, Compliance e Abrangência Jurídica</h3>
+        <p>
+            Buscamos conformidade com padrões internacionais, incluindo MiCA, FATF/GAFI e diretrizes
+            de mercados emergentes em ativos digitais, finanças descentralizadas e tokenização.
+        </p>
+        <ul>
+            <li>Produtos podem ter disponibilidade restrita por jurisdição.</li>
+            <li>Investidores devem observar leis locais antes de participar de operações.</li>
+            <li>A AVZ Infra mantém transparência documental para auditorias.</li>
+        </ul>
+        <p class="muted">Documentos formais podem ser emitidos mediante solicitação.</p>
+    </section>
+
+    <!-- 5 -->
+    <section class="card" id="tokens">
+        <h3>5. Política Institucional de Tokens e Tokenização</h3>
+        <p>
+            Os tokens do ecossistema AVZ possuem finalidade definida por smart contracts e documentos vinculados.
+            Em operações imobiliárias, a propriedade e os direitos associados são formalizados por contrato.
+        </p>
+        <ul>
+            <li>Tokens podem representar utilidade, acesso ou direitos sobre ativos.</li>
+            <li>Tokenização imobiliária exige documentação de lastro e validação contratual.</li>
+            <li>Valorização e depreciação seguem parâmetros pré-definidos.</li>
+        </ul>
+    </section>
+
+    <!-- 6 -->
+    <section class="card" id="aml-kyc">
+        <h3>6. AML/KYC — Conformidade para Investidores</h3>
+        <p>
+            Procedimentos podem ser aplicados para cumprir normas legais, incluindo:
+        </p>
+        <ul>
+            <li>verificação de identidade;</li>
+            <li>comprovação de origem de recursos;</li>
+            <li>auditorias em operações imobiliárias ou institucionais;</li>
+        </ul>
+        <p>Seguimos recomendações do GAFI/FATF.</p>
+    </section>
+
+    <!-- 7 -->
+    <section class="card" id="parceiros">
+        <h3>7. Relação com corretoras, integradores e parceiros</h3>
+        <p>
+            Integrações com plataformas externas não constituem sociedade, parceria corporativa ou vínculo financeiro
+            entre a AVZ Infra e terceiros.
+        </p>
+        <ul>
+            <li>Cada plataforma possui termos independentes.</li>
+            <li>Usuário deve aceitar políticas de terceiros quando utilizar integrações.</li>
+            <li>Parcerias institucionais formais possuem contratos próprios.</li>
+        </ul>
+    </section>
+
+    <!-- 8 -->
+    <section class="card" id="disclaimer">
+        <h3>8. Isenção de Responsabilidade (Disclaimer Institucional)</h3>
+        <p>
+            Este documento possui caráter informativo e não constitui oferta de valores mobiliários,
+            consultoria financeira, jurídica ou fiscal. Operações deverão ser avaliadas com profissionais
+            habilitados em cada jurisdição.
+        </p>
+    </section>
+
+    <!-- 9 -->
+    <section class="card" id="documentacao-formal">
+        <h3>9. Solicitação de Documentos Oficiais</h3>
+        <p>Investidores e parceiros institucionais podem solicitar:</p>
+        <ul>
+            <li>contratos formais;</li>
+            <li>documentos técnicos e jurídicos;</li>
+            <li>memorial descritivo da tokenização;</li>
+            <li>comprovação de lastro;</li>
+            <li>políticas internas da AVZ Infra;</li>
+        </ul>
+        <p class="muted"><strong>E-mail:</strong> juridico@avzinfra.com</p>
+    </section>
+
+    <div class="small-note">
+        <p><strong>Vigência:</strong> Atualizado em 16/11/2025.</p>
+        <p>Versão de distribuição institucional. Consulte sempre a versão mais recente.</p>
+    </div>
+
+    <div style="margin-top:1.5rem">
+        <a href="indexpage.html" class="btn"><i class="fas fa-arrow-left"></i> Voltar para o site</a>
+    </div>
+
+</main>
+
+<footer>
+    <p style="color:#9b9b9b">&copy; 2025 AVZ Infra — Todos os direitos reservados.</p>
+    <p style="color:#c9b874;font-family:'Cinzel',serif;margin-top:.4rem">Documentação Institucional</p>
+</footer>
+
+</body>
+</html>
