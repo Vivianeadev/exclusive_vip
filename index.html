@@ -85,7 +85,7 @@
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(15px);
             z-index: 1000;
-            padding: 1.2rem 0;
+            padding: 1rem 0;
             transition: all 0.4s ease;
             border-bottom: 1px solid rgba(212, 175, 55, 0.3);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
@@ -102,7 +102,7 @@
 
         .logo {
             font-family: 'Cinzel', serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             background: var(--gradient-gold-text);
             -webkit-background-clip: text;
@@ -171,6 +171,17 @@
             width: 100%;
         }
 
+        /* Menu Mobile */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
         /* Hero Section Luxuosa */
         .hero {
             min-height: 100vh;
@@ -186,6 +197,7 @@
                 radial-gradient(circle at 40% 40%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
                 var(--gradient-dark);
             overflow: hidden;
+            padding-top: 80px; /* Adicionado para compensar o header fixo */
         }
 
         .hero::before {
@@ -691,6 +703,24 @@
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+                border-top: 1px solid rgba(212, 175, 55, 0.3);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
             }
 
             .about-content {
@@ -726,6 +756,57 @@
             .section-title {
                 font-size: 2.5rem;
             }
+
+            .hero {
+                padding-top: 100px; /* Ajuste para mobile */
+            }
+
+            .hero h1 {
+                font-size: clamp(2.2rem, 8vw, 3.5rem);
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .logo-tagline {
+                font-size: 0.6rem;
+            }
+
+            .hero {
+                padding: 120px 1rem 0;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .contact-form {
+                padding: 2rem 1.5rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -740,7 +821,10 @@
                 <div class="logo">AVZ INFRA</div>
                 <div class="logo-tagline">TECHNOLOGY INFRASTRUCTURE</div>
             </div>
-            <ul class="nav-menu">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#home">Início</a></li>
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#produtos">Produtos</a></li>
@@ -762,7 +846,6 @@
                 <a href="#contato" class="btn btn-secondary">
                     <i class="fas fa-crown"></i>
                     Deseja Começar um Projeto para sua empresa? Fale conosco
-				
                 </a>
             </div>
         </div>
@@ -780,7 +863,7 @@
                     </div>
                     <h3>Exclusive Wallet</h3>
                     <p>Carteira digital premium para gerenciamento multi-chain de ativos digitais, com segurança de nível institucional e interface luxuosa.</p>
-                    <a href="#contato" class="btn btn-primary">
+                    <a href="exclusive_wallet.html" class="btn btn-primary">
                         <i class="fas fa-external-link-alt"></i>
                         Saiba Mais
                     </a>
@@ -982,6 +1065,32 @@
         }
         
         createParticles();
+
+        // Menu mobile toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
