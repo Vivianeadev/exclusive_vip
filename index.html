@@ -1,886 +1,1016 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Exclusive Wallet — Sistema de Autenticação Blockchain para Marcas de Luxo</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --gold-primary: #D4AF37;
-      --gold-secondary: #F4E4B8;
-      --gold-accent: #B8860B;
-      --platinum: #E5E4E2;
-      --carbon: #1A1A1A;
-      --obsidian: #0A0A0A;
-      --diamond: #B9F2FF;
-      --transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      --shadow-luxury: 0 25px 50px rgba(0, 0, 0, 0.1), 0 15px 30px rgba(0, 0, 0, 0.08);
-      --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.25);
-      --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);
-      --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%);
-      --gradient-card: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(244, 228, 184, 0.05) 100%);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--gradient-dark);
-      color: #F0F0F0;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    .luxury-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* HEADER LUXUOSO */
-    .luxury-header {
-      padding: 30px 0;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-      position: relative;
-    }
-
-    .luxury-header::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100px;
-      height: 2px;
-      background: var(--gradient-gold);
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .logo-icon {
-      width: 50px;
-      height: 50px;
-      background: var(--gradient-gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--carbon);
-      font-size: 20px;
-      font-weight: 600;
-    }
-
-    .logo-text {
-      font-family: 'Cinzel', serif;
-      font-size: 28px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      color: var(--gold-primary);
-      text-transform: uppercase;
-    }
-
-    .logo-subtitle {
-      font-size: 10px;
-      letter-spacing: 5px;
-      color: var(--platinum);
-      margin-top: 5px;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-    }
-
-    .nav-link {
-      color: var(--platinum);
-      text-decoration: none;
-      font-weight: 400;
-      letter-spacing: 1px;
-      position: relative;
-      transition: var(--transition);
-      font-size: 15px;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--gradient-gold);
-      transition: var(--transition);
-    }
-
-    .nav-link:hover {
-      color: var(--gold-primary);
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    .cta-button {
-      background: var(--gradient-gold);
-      color: var(--carbon);
-      border: none;
-      padding: 14px 28px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: var(--transition);
-      font-size: 14px;
-      box-shadow: var(--shadow-gold);
-    }
-
-    .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
-    }
-
-    /* HERO SECTION LUXUOSA */
-    .luxury-hero {
-      padding: 120px 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(244, 228, 184, 0.1) 0%, transparent 50%);
-      z-index: -1;
-    }
-
-    .hero-content {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(212, 175, 55, 0.1);
-      color: var(--gold-primary);
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 30px;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-    }
-
-    .hero-title {
-      font-family: 'Cinzel', serif;
-      font-size: 64px;
-      font-weight: 600;
-      line-height: 1.1;
-      margin-bottom: 30px;
-      color: var(--gold-primary);
-      letter-spacing: 2px;
-    }
-
-    .hero-subtitle {
-      font-size: 22px;
-      color: var(--platinum);
-      margin-bottom: 50px;
-      font-weight: 300;
-      letter-spacing: 0.5px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      margin-top: 50px;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--gold-primary);
-      border: 1px solid var(--gold-primary);
-      padding: 14px 28px;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: var(--transition);
-      font-size: 14px;
-    }
-
-    .btn-outline:hover {
-      background: rgba(212, 175, 55, 0.1);
-      transform: translateY(-3px);
-    }
-
-    /* FEATURES SECTION */
-    .luxury-features {
-      padding: 120px 0;
-      background: rgba(10, 10, 10, 0.5);
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 80px;
-    }
-
-    .section-title {
-      font-family: 'Cinzel', serif;
-      font-size: 42px;
-      font-weight: 600;
-      color: var(--gold-primary);
-      margin-bottom: 20px;
-      letter-spacing: 2px;
-    }
-
-    .section-subtitle {
-      font-size: 18px;
-      color: var(--platinum);
-      max-width: 600px;
-      margin: 0 auto;
-      font-weight: 300;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 40px;
-    }
-
-    .feature-card {
-      background: rgba(26, 26, 26, 0.8);
-      padding: 50px 40px;
-      border-radius: 20px;
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(20px);
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 6px;
-      height: 100%;
-      background: var(--gradient-gold);
-    }
-
-    .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-luxury);
-      border-color: var(--gold-primary);
-    }
-
-    .feature-icon {
-      width: 70px;
-      height: 70px;
-      background: var(--gradient-gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 30px;
-      color: var(--carbon);
-      font-size: 24px;
-    }
-
-    .feature-title {
-      font-family: 'Cinzel', serif;
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--gold-primary);
-      margin-bottom: 20px;
-    }
-
-    .feature-description {
-      color: var(--platinum);
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    /* PARTNERS SECTION */
-    .luxury-partners {
-      padding: 100px 0;
-      background: rgba(212, 175, 55, 0.03);
-    }
-
-    .partners-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px;
-      align-items: center;
-    }
-
-    .partner-logo {
-      background: rgba(26, 26, 26, 0.8);
-      height: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 15px;
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      transition: var(--transition);
-      font-family: 'Cinzel', serif;
-      font-size: 18px;
-      color: var(--gold-primary);
-      letter-spacing: 2px;
-    }
-
-    .partner-logo:hover {
-      transform: translateY(-5px);
-      border-color: var(--gold-primary);
-      box-shadow: var(--shadow-gold);
-    }
-
-    /* HOW IT WORKS SECTION */
-    .luxury-process {
-      padding: 120px 0;
-    }
-
-    .process-steps {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 80px;
-      position: relative;
-    }
-
-    .process-steps::before {
-      content: '';
-      position: absolute;
-      top: 40px;
-      left: 10%;
-      right: 10%;
-      height: 2px;
-      background: var(--gradient-gold);
-      z-index: 1;
-    }
-
-    .process-step {
-      text-align: center;
-      position: relative;
-      z-index: 2;
-      flex: 1;
-      padding: 0 20px;
-    }
-
-    .step-number {
-      width: 80px;
-      height: 80px;
-      background: var(--gradient-gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 30px;
-      color: var(--carbon);
-      font-size: 24px;
-      font-weight: 600;
-      font-family: 'Cinzel', serif;
-      box-shadow: var(--shadow-gold);
-    }
-
-    .step-title {
-      font-family: 'Cinzel', serif;
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--gold-primary);
-      margin-bottom: 15px;
-    }
-
-    .step-description {
-      color: var(--platinum);
-      font-size: 16px;
-    }
-
-    /* CTA SECTION */
-    .luxury-cta {
-      padding: 120px 0;
-      background: rgba(212, 175, 55, 0.05);
-      text-align: center;
-    }
-
-    .cta-title {
-      font-family: 'Cinzel', serif;
-      font-size: 48px;
-      font-weight: 600;
-      color: var(--gold-primary);
-      margin-bottom: 30px;
-      letter-spacing: 2px;
-    }
-
-    .cta-description {
-      font-size: 20px;
-      color: var(--platinum);
-      max-width: 700px;
-      margin: 0 auto 50px;
-      font-weight: 300;
-    }
-
-    /* FOOTER LUXUOSO */
-    .luxury-footer {
-      padding: 80px 0 40px;
-      background: var(--obsidian);
-      border-top: 1px solid rgba(212, 175, 55, 0.3);
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 50px;
-      margin-bottom: 60px;
-    }
-
-    .footer-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--gold-primary);
-      margin-bottom: 20px;
-      letter-spacing: 2px;
-    }
-
-    .footer-description {
-      color: var(--platinum);
-      font-size: 16px;
-      line-height: 1.7;
-      max-width: 400px;
-    }
-
-    .footer-heading {
-      font-family: 'Cinzel', serif;
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--gold-primary);
-      margin-bottom: 25px;
-      letter-spacing: 1px;
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-link {
-      margin-bottom: 15px;
-    }
-
-    .footer-link a {
-      color: var(--platinum);
-      text-decoration: none;
-      transition: var(--transition);
-      font-size: 15px;
-    }
-
-    .footer-link a:hover {
-      color: var(--gold-primary);
-    }
-
-    .footer-bottom {
-      padding-top: 40px;
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-      text-align: center;
-      color: var(--platinum);
-      font-size: 14px;
-    }
-
-    /* ANIMAÇÕES */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-element {
-      animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    }
-
-    .delay-1 { animation-delay: 0.2s; }
-    .delay-2 { animation-delay: 0.4s; }
-    .delay-3 { animation-delay: 0.6s; }
-
-    /* RESPONSIVIDADE */
-    @media (max-width: 1024px) {
-      .hero-title {
-        font-size: 48px;
-      }
-      
-      .process-steps {
-        flex-direction: column;
-        gap: 50px;
-      }
-      
-      .process-steps::before {
-        display: none;
-      }
-      
-      .footer-content {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      
-      .hero-title {
-        font-size: 36px;
-      }
-      
-      .hero-cta {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .partners-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .footer-content {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVZ Infra | Infraestrutura Blockchain e Soluções PropTech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-secondary: #F4E4B8;
+            --gold-accent: #B8860B;
+            --gold-light: #FFE87C;
+            --carbon: #1A1A1A;
+            --obsidian: #0A0A0A;
+            --emerald: #046307;
+            --sapphire: #0F52BA;
+            --platinum: #E5E4E2;
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow-luxury: 0 25px 50px rgba(0, 0, 0, 0.25);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.4);
+            --shadow-gold-strong: 0 0 30px rgba(212, 175, 55, 0.6);
+            --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);
+            --gradient-gold-hover: linear-gradient(135deg, #E5BF40 0%, #F9EBC8 50%, #C89610 100%);
+            --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%);
+            --gradient-gold-text: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #FFD700 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-dark);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Efeito de partículas douradas de fundo */
+        .gold-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, var(--gold-primary) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle 15s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Header Luxuoso */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 1.2rem 0;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            position: relative;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gradient-gold);
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        }
+
+        .logo-tagline {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--gold-secondary);
+            margin-top: 3px;
+            font-weight: 300;
+            font-family: 'Marcellus', serif;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--platinum);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            position: relative;
+            font-family: 'Marcellus', serif;
+            padding: 5px 0;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient-gold);
+            transition: width 0.4s ease;
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+        }
+
+        .nav-menu a:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        /* Hero Section Luxuosa */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(244, 228, 184, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+                var(--gradient-dark);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23D4AF37" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            margin-bottom: 1.8rem;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        .hero h1 .blockchain-text {
+            font-size: 0.55em; /* Reduzindo um pouco o tamanho da palavra Blockchain */
+        }
+
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(212, 175, 55, 0.6), 0 0 40px rgba(212, 175, 55, 0.4);
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: var(--platinum);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            font-family: 'Marcellus', serif;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: var(--transition);
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.8s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-gold);
+            color: #000;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold-strong);
+            background: var(--gradient-gold-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--platinum);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold-primary);
+            color: var(--gold-light);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-secondary:hover::after {
+            left: 100%;
+        }
+
+        /* Seções Luxuosas */
+        .section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Produtos Luxuosos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-luxury);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-icon {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--gold-primary);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-icon {
+            transform: scale(1.1);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        .product-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold-primary);
+            letter-spacing: 1px;
+        }
+
+        .product-card p {
+            color: var(--platinum);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            font-family: 'Marcellus', serif;
+        }
+
+        /* Sobre Luxuoso */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--platinum);
+            margin-bottom: 1.8rem;
+            line-height: 1.8;
+            font-family: 'Marcellus', serif;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            margin-bottom: 0.5rem;
+            font-family: 'Cinzel', serif;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .stat-label {
+            color: var(--platinum);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            font-family: 'Marcellus', serif;
+        }
+
+        .about-visual {
+            position: relative;
+            text-align: center;
+        }
+
+        .visual-animation {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2), rgba(34, 197, 94, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            animation: pulse 3s infinite;
+            border: 3px solid rgba(212, 175, 55, 0.5);
+            box-shadow: var(--shadow-gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 20px rgba(212, 175, 55, 0);
+            }
+        }
+
+        /* Contato Luxuoso */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--gold-primary);
+            letter-spacing: 1px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid var(--gold-primary);
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            border-left: 4px solid var(--gold-light);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .contact-icon {
+            color: var(--gold-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            display: flex;
+            justify-content: center;
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--platinum);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            font-family: 'Marcellus', serif;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer Luxuoso */
+        .footer {
+            background: #000;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--gradient-gold);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            color: #888;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            font-family: 'Marcellus', serif;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .social-links a {
+            color: var(--gold-primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .social-links a:hover {
+            color: var(--gold-light);
+            transform: translateY(-5px);
+            background: rgba(212, 175, 55, 0.2);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                padding: 1rem 2rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .visual-animation {
+                width: 250px;
+                height: 250px;
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- HEADER LUXUOSO -->
-  <header class="luxury-header">
-    <div class="luxury-container">
-      <div class="header-content">
-        <div class="logo">
-          <div class="logo-icon">
-            <i class="fas fa-crown"></i>
-          </div>
-          <div>
-            <div class="logo-text">Exclusive Wallet</div>
-            <div class="logo-subtitle">Blockchain Authentication</div>
-          </div>
-        </div>
-        
-        <nav class="nav-links">
-          <a href="#features" class="nav-link">Tecnologia</a>
-          <a href="#process" class="nav-link">Como Funciona</a>
-          <a href="#partners" class="nav-link">Parcerias</a>
-          <a href="#contact" class="nav-link">Contato</a>
+    <!-- Efeito de partículas douradas -->
+    <div class="gold-particles" id="particles"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div>
+                <div class="logo">AVZ INFRA</div>
+                <div class="logo-tagline">TECHNOLOGY INFRASTRUCTURE</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
         </nav>
-        
-        <button class="cta-button">
-          <i class="fas fa-gem"></i> Solicitar Demonstração
-        </button>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- HERO SECTION -->
-  <section class="luxury-hero">
-    <div class="hero-background"></div>
-    <div class="luxury-container">
-      <div class="hero-content animate-element">
-        <div class="hero-badge">
-          <i class="fas fa-star"></i> Tecnologia Exclusiva para Marcas de Luxo
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1><span class="blockchain-text">Soluções em Blockchain</span></h1>
+            <p>Desenvolvemos tecnologia de ponta com foco em blockchain, sistemas multi-chain e PropTech para transformar negócios e setores inteiros.</p>
+            <div class="cta-buttons">
+                <a href="#produtos" class="btn btn-primary">
+                    <i class="fas fa-gem"></i>
+                    Nossos Produtos
+                </a>
+                <a href="#contato" class="btn btn-secondary">
+                    <i class="fas fa-crown"></i>
+                    Deseja Começar um Projeto para sua empresa? Fale conosco
+				
+                </a>
+            </div>
         </div>
-        <h1 class="hero-title">
-          Autenticação Blockchain<br>para Produtos Premium
-        </h1>
-        <p class="hero-subtitle">
-          Transforme cada produto de luxo em um ativo digital exclusivo com nossa tecnologia de wallet integrada e QR code autenticado.
-        </p>
-        
-        <div class="hero-cta">
-          <button class="cta-button">
-            <i class="fas fa-play-circle"></i> Ver Demonstração
-          </button>
-          <button class="btn-outline">
-            <i class="fas fa-file-contract"></i> Proposta Comercial
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FEATURES SECTION -->
-  <section id="features" class="luxury-features">
-    <div class="luxury-container">
-      <div class="section-header animate-element">
-        <h2 class="section-title">Tecnologia de Autenticação Premium</h2>
-        <p class="section-subtitle">Sistema completo de validação e rastreabilidade para produtos de alto valor</p>
-      </div>
-      
-      <div class="features-grid">
-        <div class="feature-card animate-element delay-1">
-          <div class="feature-icon">
-            <i class="fas fa-qrcode"></i>
-          </div>
-          <h3 class="feature-title">QR Code Exclusivo</h3>
-          <p class="feature-description">
-            Cada produto recebe um QR code único e criptografado que conecta diretamente ao sistema blockchain, garantindo autenticidade e procedência.
-          </p>
-        </div>
-        
-        <div class="feature-card animate-element delay-2">
-          <div class="feature-icon">
-            <i class="fas fa-wallet"></i>
-          </div>
-          <h3 class="feature-title">Wallet Digital Integrada</h3>
-          <p class="feature-description">
-            Sistema de carteira digital que armazena certificados de autenticidade, histórico de propriedade e documentos exclusivos do produto.
-          </p>
-        </div>
-        
-        <div class="feature-card animate-element delay-3">
-          <div class="feature-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3 class="feature-title">Proteção Antifalsificação</h3>
-          <p class="feature-description">
-            Tecnologia blockchain imutável que previne falsificações e garante a exclusividade de cada item em edições limitadas.
-          </p>
-        </div>
-        
-        <div class="feature-card animate-element delay-1">
-          <div class="feature-icon">
-            <i class="fas fa-certificate"></i>
-          </div>
-          <h3 class="feature-title">Certificado Digital</h3>
-          <p class="feature-description">
-            Certificado de autenticidade digital que acompanha o produto por toda sua vida útil, aumentando seu valor como item colecionável.
-          </p>
-        </div>
-        
-        <div class="feature-card animate-element delay-2">
-          <div class="feature-icon">
-            <i class="fas fa-history"></i>
-          </div>
-          <h3 class="feature-title">Histórico de Propriedade</h3>
-          <p class="feature-description">
-            Rastreabilidade completa da cadeia de custódia, desde a fabricação até o proprietário atual, criando uma proveniência verificável.
-          </p>
-        </div>
-        
-        <div class="feature-card animate-element delay-3">
-          <div class="feature-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3 class="feature-title">Valorização de Ativos</h3>
-          <p class="feature-description">
-            Produtos autenticados via blockchain tendem a valorizar mais no mercado secundário, criando um ecossistema de luxo mais valioso.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- Produtos Section -->
+    <section id="produtos" class="section">
+        <div class="container">
+            <h2 class="section-title">Nossos Produtos</h2>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Exclusive Wallet</h3>
+                    <p>Carteira digital premium para gerenciamento multi-chain de ativos digitais, com segurança de nível institucional e interface luxuosa.</p>
+                    <a href="#contato" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Saiba Mais
+                    </a>
+                </div>
 
-  <!-- PARTNERS SECTION -->
-  <section id="partners" class="luxury-partners">
-    <div class="luxury-container">
-      <div class="section-header animate-element">
-        <h2 class="section-title">Parcerias de Excelência</h2>
-        <p class="section-subtitle">Tecnologia desenvolvida para as marcas mais exclusivas do mercado</p>
-      </div>
-      
-      <div class="partners-grid">
-        <div class="partner-logo animate-element delay-1">LOUIS VUITTON</div>
-        <div class="partner-logo animate-element delay-2">GUCCI</div>
-        <div class="partner-logo animate-element delay-3">CARTIER</div>
-        <div class="partner-logo animate-element delay-1">HERMÈS</div>
-        <div class="partner-logo animate-element delay-2">ROLEX</div>
-        <div class="partner-logo animate-element delay-3">TIFFANY & CO.</div>
-      </div>
-    </div>
-  </section>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>AVZ Infra</h3>
+                    <p>Infraestrutura completa para operação em múltiplas blockchains, incluindo Ethereum, Polygon, BSC, Avalanche e outras redes principais.</p>
+                    <a href="#contato" class="btn btn-primary">
+                        <i class="fas fa-plug"></i>
+                        Conectar
+                    </a>
+                </div>
 
-  <!-- HOW IT WORKS SECTION -->
-  <section id="process" class="luxury-process">
-    <div class="luxury-container">
-      <div class="section-header animate-element">
-        <h2 class="section-title">Como Funciona a Tecnologia</h2>
-        <p class="section-subtitle">Implementação simples e elegante para produtos de luxo</p>
-      </div>
-      
-      <div class="process-steps">
-        <div class="process-step animate-element delay-1">
-          <div class="step-number">1</div>
-          <h3 class="step-title">Integração</h3>
-          <p class="step-description">
-            Implementamos o sistema de QR code exclusivo em seus produtos durante o processo de fabricação.
-          </p>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>Soluções PropTech</h3>
+                    <p>Plataformas imobiliárias digitais com tokenização de ativos, contratos inteligentes e gestão descentralizada para o mercado imobiliário.</p>
+                    <a href="#contato" class="btn btn-primary">
+                        <i class="fas fa-home"></i>
+                        Explorar
+                    </a>
+                </div>
+            </div>
         </div>
-        
-        <div class="process-step animate-element delay-2">
-          <div class="step-number">2</div>
-          <h3 class="step-title">Ativação</h3>
-          <p class="step-description">
-            Cada produto é registrado no blockchain com informações exclusivas e certificado digital.
-          </p>
-        </div>
-        
-        <div class="process-step animate-element delay-3">
-          <div class="step-number">3</div>
-          <h3 class="step-title">Autenticação</h3>
-          <p class="step-description">
-            Clientes escaneiam o QR code para acessar o wallet digital com certificado e histórico do produto.
-          </p>
-        </div>
-        
-        <div class="process-step animate-element delay-1">
-          <div class="step-number">4</div>
-          <h3 class="step-title">Valorização</h3>
-          <p class="step-description">
-            Produtos autenticados ganham valor no mercado secundário com proveniência verificável.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA SECTION -->
-  <section id="contact" class="luxury-cta">
-    <div class="luxury-container">
-      <div class="animate-element">
-        <h2 class="cta-title">Eleve o Valor da Sua Marca</h2>
-        <p class="cta-description">
-          Junte-se às marcas de luxo que estão transformando produtos físicos em ativos digitais exclusivos com nossa tecnologia blockchain.
-        </p>
-        
-        <div class="hero-cta">
-          <button class="cta-button">
-            <i class="fas fa-crown"></i> Agendar Apresentação
-          </button>
-          <a href="whitepaper.html" class="btn-outline">
-            <i class="fas fa-download"></i> Baixar Whitepaper
-          </a>
+    <!-- Sobre Section -->
+    <section id="sobre" class="section">
+        <div class="container">
+            <h2 class="section-title">A AVZ Infra</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Tecnologia de Classe Mundial</h2>
+                    <p>Fornecemos soluções inovadoras para o ecossistema digital. Combinamos expertise técnica avançada com visão estratégica para criar produtos que transformam setores inteiros.</p>
+                    <p>Nossa missão é construir a infraestrutura tecnológica que permitirá a próxima geração de aplicações descentralizadas, sistemas financeiros e marketplaces digitais, com foco especial em PropTech, FinTech e Web3.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Projetos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Blockchains</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Países</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-visual">
+                    <div class="visual-animation">
+                        AVZ
+                    </div>
+                    <p style="margin-top: 2rem; color: var(--gold-primary); font-weight: 600; letter-spacing: 2px; font-family: 'Cinzel', serif;">
+    INFRAESTRUTURA • TECNOLOGIA • INOVAÇÃO -Descentralização global, implementação local, segurança e conformidade para cada mercado
+</p>
+<p style="margin-top: 1rem; color: var(--gold-secondary); font-size: 1.1rem; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+    
+</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
-  <footer class="luxury-footer">
-    <div class="luxury-container">
-      <div class="footer-content">
-        <div class="footer-info">
-          <div class="footer-logo">Exclusive Wallet</div>
-          <p class="footer-description">
-            Tecnologia de autenticação blockchain para produtos de luxo. Transformando itens físicos em ativos digitais exclusivos com certificação verificável.
-          </p>
+    <!-- Contact Section -->
+    <section id="contato" class="section">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Vamos Construir o Futuro Juntos</h3>
+                    <p>Estamos sempre abertos a discutir novas parcerias, projetos de infraestrutura e oportunidades de colaboração tecnológica.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <strong>Endereço</strong><br>
+                                Av. Brigadeiro Faria Lima, 1847, Jardim Paulistano - São Paulo, SP
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <strong>Telefone</strong><br>
+                                +55 (11) 9999-9999
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <strong>E-mail</strong><br>
+                                contato@avzinfra.com
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Assunto</label>
+                            <select id="subject" class="form-control" required>
+                                <option value="">Selecione um assunto</option>
+                                <option value="infraestrutura">Infraestrutura</option>
+                                <option value="blockchain">Blockchain</option>
+                                <option value="proptech">PropTech</option>
+                                <option value="parceria">Parceria</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-        
-        <div class="footer-links-group">
-          <h3 class="footer-heading">Tecnologia</h3>
-          <ul class="footer-links">
-            <li class="footer-link"><a href="#">Sistema Blockchain</a></li>
-            <li class="footer-link"><a href="#">Wallet Digital</a></li>
-            <li class="footer-link"><a href="#">QR Code Exclusivo</a></li>
-            <li class="footer-link"><a href="#">Certificação</a></li>
-            <li class="footer-link"><a href="whitepaper.html">Whitepaper</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-links-group">
-          <h3 class="footer-heading">Empresa</h3>
-          <ul class="footer-links">
-            <li class="footer-link"><a href="#">Sobre Nós</a></li>
-            <li class="footer-link"><a href="#">Parcerias</a></li>
-            <li class="footer-link"><a href="#">Cases de Sucesso</a></li>
-            <li class="footer-link"><a href="#">Blog</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-links-group">
-          <h3 class="footer-heading">Contato</h3>
-          <ul class="footer-links">
-            <li class="footer-link"><a href="#">Solicitar Demonstração</a></li>
-            <li class="footer-link"><a href="#">Orçamento</a></li>
-            <li class="footer-link"><a href="#">Suporte</a></li>
-            <li class="footer-link"><a href="#">Trabalhe Conosco</a></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <p>&copy; 2024 Exclusive Wallet. Todos os direitos reservados. Tecnologia blockchain para o mercado de luxo.</p>
-      </div>
-    </div>
-  </footer>
+    </section>
 
-  <script>
-    // Animação de entrada suave
-    document.addEventListener('DOMContentLoaded', function() {
-      // Adiciona classe de animação aos elementos
-      const animateElements = document.querySelectorAll('.animate-element');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = 'translateY(0)';
-          }
-        });
-      }, { threshold: 0.1 });
-      
-      animateElements.forEach(element => {
-        element.style.opacity = 0;
-        element.style.transform = 'translateY(40px)';
-        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        observer.observe(element);
-      });
-      
-      // Smooth scroll para links internos
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-medium"></i></a>
+            </div>
+            <p>&copy; 2025 AVZ Infra. Todos os direitos reservados.</p>
+            <p style="color: var(--gold-primary); font-size: 0.9rem; font-family: 'Cinzel', serif;">
+                "Construindo a infraestrutura que conecta o presente ao futuro."
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Efeito de partículas douradas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particlesCount = 30;
+            
+            for (let i = 0; i < particlesCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamanho aleatório entre 2px e 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posição inicial aleatória
+                particle.style.left = `${Math.random() * 100}vw`;
+                
+                // Atraso de animação aleatório
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                // Duração de animação aleatória
+                const duration = Math.random() * 10 + 15;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-          }
         });
-      });
-    });
-  </script>
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.backdropFilter = 'blur(15px)';
+            }
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Obrigado pelo seu interesse! Nossa equipe entrará em contato em breve.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
