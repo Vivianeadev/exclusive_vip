@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Wallet | Carteira Multi-Chain Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-secondary: #F4E4B8;
+            --gold-accent: #B8860B;
+            --gold-light: #FFE87C;
+            --carbon: #1A1A1A;
+            --obsidian: #0A0A0A;
+            --emerald: #046307;
+            --sapphire: #0F52BA;
+            --platinum: #E5E4E2;
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow-luxury: 0 25px 50px rgba(0, 0, 0, 0.25);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.4);
+            --shadow-gold-strong: 0 0 30px rgba(212, 175, 55, 0.6);
+            --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);
+            --gradient-gold-hover: linear-gradient(135deg, #E5BF40 0%, #F9EBC8 50%, #C89610 100%);
+            --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%);
+            --gradient-gold-text: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #FFD700 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-dark);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Efeito de partículas douradas de fundo */
+        .gold-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, var(--gold-primary) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle 15s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Header Luxuoso */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 1.2rem 0;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            position: relative;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gradient-gold);
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        }
+
+        .logo-tagline {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--gold-secondary);
+            margin-top: 3px;
+            font-weight: 300;
+            font-family: 'Marcellus', serif;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--platinum);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            position: relative;
+            font-family: 'Marcellus', serif;
+            padding: 5px 0;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient-gold);
+            transition: width 0.4s ease;
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+        }
+
+        .nav-menu a:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        /* Hero Section Exclusiva para a Wallet */
+        .hero-wallet {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(244, 228, 184, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+                var(--gradient-dark);
+            overflow: hidden;
+        }
+
+        .hero-wallet::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23D4AF37" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-wallet h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            margin-bottom: 1.8rem;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(212, 175, 55, 0.6), 0 0 40px rgba(212, 175, 55, 0.4);
+            }
+        }
+
+        .hero-wallet p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: var(--platinum);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            font-family: 'Marcellus', serif;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: var(--transition);
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.8s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-gold);
+            color: #000;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold-strong);
+            background: var(--gradient-gold-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--platinum);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold-primary);
+            color: var(--gold-light);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-secondary:hover::after {
+            left: 100%;
+        }
+
+        /* Seções Luxuosas */
+        .section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Recursos da Wallet */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-luxury);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--gold-primary);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        .feature-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold-primary);
+            letter-spacing: 1px;
+        }
+
+        .feature-card p {
+            color: var(--platinum);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            font-family: 'Marcellus', serif;
+        }
+
+        /* Demonstração da Interface */
+        .interface-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .interface-visual {
+            position: relative;
+            text-align: center;
+        }
+
+        .wallet-mockup {
+            width: 100%;
+            max-width: 400px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: var(--shadow-luxury);
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .wallet-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+        }
+
+        .mockup-header {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-size: 1.2rem;
+        }
+
+        .mockup-content {
+            padding: 2rem;
+            text-align: left;
+        }
+
+        .mockup-balance {
+            font-size: 2.5rem;
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+            font-family: 'Cinzel', serif;
+        }
+
+        .mockup-address {
+            background: rgba(212, 175, 55, 0.08);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .mockup-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .mockup-tab {
+            padding: 0.8rem 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--gold-primary);
+        }
+
+        /* Blockchains Suportadas */
+        .blockchains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .blockchain-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+        }
+
+        .blockchain-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .blockchain-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold-primary);
+        }
+
+        .blockchain-name {
+            font-family: 'Cinzel', serif;
+            color: var(--platinum);
+            font-size: 1rem;
+        }
+
+        /* Segurança */
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .security-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--gold-primary);
+            transition: var(--transition);
+        }
+
+        .security-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .security-item h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Call to Action Final */
+        .final-cta {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                var(--gradient-dark);
+            border-radius: 24px;
+            margin-top: 4rem;
+        }
+
+        .final-cta h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Footer Luxuoso */
+        .footer {
+            background: #000;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--gradient-gold);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            color: #888;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            font-family: 'Marcellus', serif;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .social-links a {
+            color: var(--gold-primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .social-links a:hover {
+            color: var(--gold-light);
+            transform: translateY(-5px);
+            background: rgba(212, 175, 55, 0.2);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .interface-showcase {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .blockchains-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                padding: 1rem 2rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeito de partículas douradas -->
+    <div class="gold-particles" id="particles"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div>
+                <div class="logo">EXCLUSIVE WALLET</div>
+                <div class="logo-tagline">BY AVZ INFRA</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#seguranca">Segurança</a></li>
+                <li><a href="#blockchains">Blockchains</a></li>
+                <li><a href="#demo">Demonstração</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-wallet">
+        <div class="hero-content">
+            <h1>Exclusive Wallet</h1>
+            <p>A carteira multi-chain definitiva para instituições e investidores exigentes. Segurança de nível bancário com a sofisticação que você merece.</p>
+            <div class="cta-buttons">
+                <a href="#demo" class="btn btn-primary">
+                    <i class="fas fa-gem"></i>
+                    Experimentar Demo
+                </a>
+                <a href="#waitlist" class="btn btn-secondary">
+                    <i class="fas fa-crown"></i>
+                    Entrar na Waitlist
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recursos Section -->
+    <section id="recursos" class="section">
+        <div class="container">
+            <h2 class="section-title">Recursos Premium</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Multi-Chain</h3>
+                    <p>Gerencie ativos em 10+ blockchains simultaneamente com configurações independentes para cada rede.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Segurança Máxima</h3>
+                    <p>Criptografia client-side, autenticação multi-fator e backup seguro com frase de recuperação.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Alta Performance</h3>
+                    <p>Interface otimizada e conexões RPC de baixa latência para transações rápidas e eficientes.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Design Luxuoso</h3>
+                    <p>Interface premium com temas personalizáveis, animações suaves e experiência de usuário refinada.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Ferramentas Avançadas</h3>
+                    <p>Conversor de unidades, calculadora de gás, validador de endereços e gerador de QR codes integrados.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>AVZ Infra Integrada</h3>
+                    <p>Validação RPC proprietária com taxas otimizadas e monitoramento em tempo real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demonstração Section -->
+    <section id="demo" class="section">
+        <div class="container">
+            <h2 class="section-title">Interface Premium</h2>
+            
+            <div class="interface-showcase">
+                <div class="interface-visual">
+                    <div class="wallet-mockup">
+                        <div class="mockup-header">
+                            Exclusive Wallet
+                        </div>
+                        <div class="mockup-content">
+                            <div class="mockup-balance">
+                                12.458 ETH
+                            </div>
+                            <div class="mockup-address">
+                                0x1a2b...3c4d5e
+                            </div>
+                            <div class="mockup-tabs">
+                                <div class="mockup-tab">Blockchains</div>
+                                <div class="mockup-tab">Segurança</div>
+                                <div class="mockup-tab">Ferramentas</div>
+                            </div>
+                            <div style="color: var(--platinum); font-size: 0.9rem;">
+                                <p>• Saldo multi-chain unificado</p>
+                                <p>• Transferências entre blockchains</p>
+                                <p>• Histórico de transações</p>
+                                <p>• Configurações avançadas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--gold-primary); font-size: 2rem; margin-bottom: 2rem;">
+                        Experiência de Usuário Incomparável
+                    </h3>
+                    <p style="color: var(--platinum); margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">
+                        A Exclusive Wallet redefine o padrão de carteiras digitais com uma interface intuitiva que combina poder técnico com elegância visual.
+                    </p>
+                    <div style="color: var(--platinum);">
+                        <p style="margin-bottom: 1rem;"><i class="fas fa-check" style="color: var(--gold-primary); margin-right: 10px;"></i> Navegação por abas intuitiva</p>
+                        <p style="margin-bottom: 1rem;"><i class="fas fa-check" style="color: var(--gold-primary); margin-right: 10px;"></i> Visualização multi-chain em tempo real</p>
+                        <p style="margin-bottom: 1rem;"><i class="fas fa-check" style="color: var(--gold-primary); margin-right: 10px;"></i> Ferramentas integradas para profissionais</p>
+                        <p style="margin-bottom: 1rem;"><i class="fas fa-check" style="color: var(--gold-primary); margin-right: 10px;"></i> Tema claro/escuro com transições suaves</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blockchains Section -->
+    <section id="blockchains" class="section">
+        <div class="container">
+            <h2 class="section-title">Blockchains Suportadas</h2>
+            <p style="text-align: center; color: var(--platinum); margin-bottom: 4rem; font-size: 1.2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Conecte-se às principais redes blockchain do mundo com suporte nativo e configurações otimizadas.
+            </p>
+            
+            <div class="blockchains-grid">
+                <div class="blockchain-item">
+                    <div class="blockchain-icon">
+                        <i class="fab fa-ethereum"></i>
+                    </div>
+                    <div class="blockchain-name">Ethereum</div>
+                </div>
+                
+                <div class="blockchain-item">
+                    <div class="blockchain-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="blockchain-name">Polygon</div>
+                </div>
+                
+                <div class="blockchain-item">
+                    <div class="blockchain-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="blockchain-name">BSC</div>
+                </div>
+                
+                <div class="blockchain-item">
+                    <div class="blockchain-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <div class="blockchain-name">Avalanche</div>
+                </div>
+                
+                <div class="blockchain-item">
+                    <div class="blockchain-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <div class="blockchain-name">Fantom</div>
+                </div>
+                
+                <div class="blockchain-item">
+                    <div class="blockchain-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="blockchain-name">Arbitrum</div>
+                </div>
+                
+                <div class="blockchain-item">
+                    <div class="blockchain-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="blockchain-name">Optimism</div>
+                </div>
+                
+                <div class="blockchain-item">
+                    <div class="blockchain-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="blockchain-name">Cardano</div>
+                </div>
+                
+                <div class="blockchain-item">
+                    <div class="blockchain-icon">
+                        <i class="fab fa-bitcoin"></i>
+                    </div>
+                    <div class="blockchain-name">Bitcoin</div>
+                </div>
+                
+                <div class="blockchain-item">
+                    <div class="blockchain-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="blockchain-name">XRP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Segurança Section -->
+    <section id="seguranca" class="section">
+        <div class="container">
+            <h2 class="section-title">Segurança Institucional</h2>
+            
+            <div class="security-features">
+                <div class="security-item">
+                    <h4><i class="fas fa-user-shield"></i> 100% Client-Side</h4>
+                    <p>Todas as operações ocorrem localmente no seu dispositivo. Suas chaves privadas nunca saem do seu controle.</p>
+                </div>
+                
+                <div class="security-item">
+                    <h4><i class="fas fa-key"></i> Criptografia Avançada</h4>
+                    <p>Seus dados são protegidos com algoritmos de criptografia de última geração e senha mestra opcional.</p>
+                </div>
+                
+                <div class="security-item">
+                    <h4><i class="fas fa-redo"></i> Backup e Recuperação</h4>
+                    <p>Sistema de backup com frase mnemônica de 12 palavras para recuperação em qualquer dispositivo.</p>
+                </div>
+                
+                <div class="security-item">
+                    <h4><i class="fas fa-clipboard-check"></i> Transações Assinadas Localmente</h4>
+                    <p>Cada transação é assinada localmente antes da transmissão, garantindo máxima segurança.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist Section -->
+    <section id="waitlist" class="section">
+        <div class="container">
+            <div class="final-cta">
+                <h2>Prepare-se para o Futuro</h2>
+                <p style="color: var(--platinum); font-size: 1.2rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    A Exclusive Wallet está em fase final de desenvolvimento. Garanta seu acesso prioritário e benefícios exclusivos.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary" id="joinWaitlist">
+                        <i class="fas fa-crown"></i>
+                        Entrar na Waitlist
+                    </a>
+                    <a href="https://avzinfra.com" class="btn btn-secondary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Conhecer a AVZ Infra
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-medium"></i></a>
+            </div>
+            <p>&copy; 2025 AVZ Infra. Todos os direitos reservados.</p>
+            <p style="color: var(--gold-primary); font-size: 0.9rem; font-family: 'Cinzel', serif;">
+                "A carteira que une segurança bancária com sofisticação digital."
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Efeito de partículas douradas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particlesCount = 30;
+            
+            for (let i = 0; i < particlesCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                const duration = Math.random() * 10 + 15;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.backdropFilter = 'blur(15px)';
+            }
+        });
+
+        // Waitlist simulation
+        document.getElementById('joinWaitlist').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Obrigado pelo seu interesse! Em breve entraremos em contato com mais informações sobre o lançamento da Exclusive Wallet.');
+        });
+    </script>
+</body>
+</html>
