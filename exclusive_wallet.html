@@ -573,6 +573,81 @@
             font-size: 1.3rem;
         }
 
+        /* Waitlist Section */
+        .waitlist-section {
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                var(--gradient-dark);
+            border-radius: 24px;
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: var(--shadow-luxury);
+        }
+
+        .waitlist-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            color: var(--platinum);
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .form-input::placeholder {
+            color: rgba(229, 228, 226, 0.5);
+        }
+
+        .form-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            display: none;
+            font-family: 'Marcellus', serif;
+        }
+
+        .form-message.success {
+            background: rgba(4, 99, 7, 0.2);
+            border: 1px solid var(--emerald);
+            color: var(--platinum);
+            display: block;
+        }
+
+        .form-message.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: var(--platinum);
+            display: block;
+        }
+
         /* Call to Action Final */
         .final-cta {
             text-align: center;
@@ -702,6 +777,7 @@
                 <li><a href="#seguranca">Segurança</a></li>
                 <li><a href="#blockchains">Blockchains</a></li>
                 <li><a href="#demo">Demonstração</a></li>
+                <li><a href="#waitlist">Waitlist</a></li>
             </ul>
         </nav>
     </header>
@@ -946,20 +1022,35 @@
     <!-- Waitlist Section -->
     <section id="waitlist" class="section">
         <div class="container">
-            <div class="final-cta">
-                <h2>Prepare-se para o Futuro</h2>
+            <div class="waitlist-section">
+                <h2 class="section-title">Acesso Exclusivo</h2>
                 <p style="color: var(--platinum); font-size: 1.2rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    A Exclusive Wallet está em fase final de desenvolvimento. Garanta seu acesso prioritário e benefícios exclusivos.
+                    A Exclusive Wallet está em fase final de desenvolvimento. Junte-se à nossa lista de espera para receber acesso prioritário e benefícios exclusivos.
                 </p>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary" id="joinWaitlist">
-                        <i class="fas fa-crown"></i>
-                        Entrar na Waitlist
-                    </a>
-                    <a href="https://avzinfra.com" class="btn btn-secondary">
-                        <i class="fas fa-external-link-alt"></i>
-                        Conhecer a AVZ Infra
-                    </a>
+                
+                <div class="waitlist-form">
+                    <form id="waitlistForm">
+                        <div class="form-group">
+                            <label for="email" class="form-label">Seu melhor e-mail</label>
+                            <input type="email" id="email" class="form-input" placeholder="seu@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="name" class="form-label">Seu nome (opcional)</label>
+                            <input type="text" id="name" class="form-input" placeholder="Como gostaria de ser chamado">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <i class="fas fa-crown"></i>
+                            Garantir Meu Acesso
+                        </button>
+                    </form>
+                    
+                    <div id="formMessage" class="form-message"></div>
+                </div>
+                
+                <div style="margin-top: 3rem; color: var(--platinum); font-size: 0.9rem;">
+                    <p><i class="fas fa-shield-alt" style="color: var(--gold-primary); margin-right: 10px;"></i> Seus dados estão seguros conosco. Não compartilhamos informações com terceiros.</p>
                 </div>
             </div>
         </div>
@@ -1029,11 +1120,88 @@
             }
         });
 
-        // Waitlist simulation
-        document.getElementById('joinWaitlist').addEventListener('click', function(e) {
+        // Waitlist Form Handler
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Obrigado pelo seu interesse! Em breve entraremos em contato com mais informações sobre o lançamento da Exclusive Wallet.');
+            
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const messageEl = document.getElementById('formMessage');
+            
+            // Validação básica de email
+            if (!validateEmail(email)) {
+                showMessage('Por favor, insira um endereço de e-mail válido.', 'error');
+                return;
+            }
+            
+            // Desabilitar botão e mostrar estado de carregamento
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+            
+            // Simular envio para o Cloudflare Worker
+            // Em um ambiente real, você substituiria esta parte pela chamada real para sua API
+            setTimeout(() => {
+                // Simular resposta bem-sucedida
+                const success = Math.random() > 0.1; // 90% de chance de sucesso para demonstração
+                
+                if (success) {
+                    showMessage(`Obrigado${name ? ', ' + name : ''}! Você foi adicionado à nossa lista de espera. Entraremos em contato em breve com mais informações.`, 'success');
+                    document.getElementById('waitlistForm').reset();
+                    
+                    // Aqui você enviaria os dados para o Cloudflare Worker
+                    // saveEmailToCloudflare(email, name);
+                } else {
+                    showMessage('Ocorreu um erro. Por favor, tente novamente mais tarde.', 'error');
+                }
+                
+                // Reabilitar botão
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-crown"></i> Garantir Meu Acesso';
+            }, 1500);
         });
+        
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+        
+        function showMessage(text, type) {
+            const messageEl = document.getElementById('formMessage');
+            messageEl.textContent = text;
+            messageEl.className = 'form-message ' + type;
+            
+            // Remover mensagem após 5 segundos
+            setTimeout(() => {
+                messageEl.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Função para enviar email para Cloudflare Worker (implementação real)
+        async function saveEmailToCloudflare(email, name) {
+            try {
+                // Substitua pela URL do seu Worker no Cloudflare
+                const response = await fetch('https://your-worker.your-subdomain.workers.dev/save-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        email: email,
+                        name: name || '',
+                        timestamp: new Date().toISOString()
+                    }),
+                });
+                
+                if (response.ok) {
+                    console.log('Email salvo com sucesso');
+                } else {
+                    console.error('Erro ao salvar email');
+                }
+            } catch (error) {
+                console.error('Erro de rede:', error);
+            }
+        }
     </script>
 </body>
 </html>
