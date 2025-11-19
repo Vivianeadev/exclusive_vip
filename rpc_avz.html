@@ -390,7 +390,6 @@
             backdrop-filter: blur(10px);
             font-family: 'Cinzel', serif;
             font-size: 1.2rem;
-            color: var(--gold-primary);
         }
 
         .stat-card::before {
@@ -413,6 +412,18 @@
 
         .stat-card:hover::before {
             opacity: 1;
+        }
+
+        .status-online {
+            color: #22c55e !important;
+        }
+
+        .status-offline {
+            color: #ef4444 !important;
+        }
+
+        .status-loading {
+            color: #f59e0b !important;
         }
 
         /* Cards das Blockchains */
@@ -531,6 +542,16 @@
             border-color: var(--gold-primary);
             box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
             background: rgba(255, 255, 255, 0.15);
+        }
+
+        .wallet-info {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 0.9rem;
         }
 
         /* RPC Section */
@@ -730,28 +751,6 @@
             display: none;
         }
 
-        .wallet-info {
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-            font-family: monospace;
-            font-size: 0.9rem;
-        }
-
-        .status-online {
-            color: #22c55e !important;
-        }
-
-        .status-offline {
-            color: #ef4444 !important;
-        }
-
-        .status-loading {
-            color: #f59e0b !important;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             .nav-menu {
@@ -895,10 +894,10 @@
         <div class="container">
             <h2 class="section-title">Status das Blockchains</h2>
             <div class="stats-grid">
-                <div class="stat-card" id="eth-status">Ethereum: <span class="status-loading">Verificando...</span></div>
-                <div class="stat-card" id="bsc-status">Binance Smart Chain: <span class="status-loading">Verificando...</span></div>
                 <div class="stat-card" id="polygon-status">Polygon: <span class="status-loading">Verificando...</span></div>
-                <div class="stat-card" id="avax-status">Avalanche: <span class="status-loading">Verificando...</span></div>
+                <div class="stat-card" id="ethereum-status">Ethereum: <span class="status-loading">Verificando...</span></div>
+                <div class="stat-card" id="bsc-status">Binance Smart Chain: <span class="status-loading">Verificando...</span></div>
+                <div class="stat-card" id="avalanche-status">Avalanche: <span class="status-loading">Verificando...</span></div>
                 <div class="stat-card" id="arbitrum-status">Arbitrum: <span class="status-loading">Verificando...</span></div>
                 <div class="stat-card" id="base-status">Base: <span class="status-loading">Verificando...</span></div>
             </div>
@@ -910,9 +909,9 @@
         <div class="container">
             <h2 class="section-title">Selecione a Blockchain</h2>
             <div class="chain-cards">
+                <div class="chain-card" data-chain="polygon">Polygon</div>
                 <div class="chain-card" data-chain="ethereum">Ethereum</div>
                 <div class="chain-card" data-chain="bsc">Binance Smart Chain</div>
-                <div class="chain-card" data-chain="polygon">Polygon</div>
                 <div class="chain-card" data-chain="avalanche">Avalanche</div>
                 <div class="chain-card" data-chain="arbitrum">Arbitrum</div>
                 <div class="chain-card" data-chain="base">Base</div>
@@ -962,28 +961,28 @@
                 <h2>Endpoints RPC</h2>
                 <div class="rpc-grid">
                     <div class="rpc-row">
+                        <span>Polygon RPC</span>
+                        <code id="polygon-rpc">https://rpc-exclusive.avizaecosystem.workers.dev/?chain=polygon</code>
+                    </div>
+                    <div class="rpc-row">
                         <span>Ethereum RPC</span>
-                        <code id="eth-rpc">https://seu-worker.avzinfra.workers.dev/?chain=ethereum</code>
+                        <code id="ethereum-rpc">https://rpc-exclusive.avizaecosystem.workers.dev/?chain=ethereum</code>
                     </div>
                     <div class="rpc-row">
                         <span>BSC RPC</span>
-                        <code id="bsc-rpc">https://seu-worker.avzinfra.workers.dev/?chain=bsc</code>
-                    </div>
-                    <div class="rpc-row">
-                        <span>Polygon RPC</span>
-                        <code id="polygon-rpc">https://seu-worker.avzinfra.workers.dev/?chain=polygon</code>
+                        <code id="bsc-rpc">https://rpc-exclusive.avizaecosystem.workers.dev/?chain=bsc</code>
                     </div>
                     <div class="rpc-row">
                         <span>Avalanche RPC</span>
-                        <code id="avax-rpc">https://seu-worker.avzinfra.workers.dev/?chain=avalanche</code>
+                        <code id="avalanche-rpc">https://rpc-exclusive.avizaecosystem.workers.dev/?chain=avalanche</code>
                     </div>
                     <div class="rpc-row">
                         <span>Arbitrum RPC</span>
-                        <code id="arbitrum-rpc">https://seu-worker.avzinfra.workers.dev/?chain=arbitrum</code>
+                        <code id="arbitrum-rpc">https://rpc-exclusive.avizaecosystem.workers.dev/?chain=arbitrum</code>
                     </div>
                     <div class="rpc-row">
                         <span>Base RPC</span>
-                        <code id="base-rpc">https://seu-worker.avzinfra.workers.dev/?chain=base</code>
+                        <code id="base-rpc">https://rpc-exclusive.avizaecosystem.workers.dev/?chain=base</code>
                     </div>
                 </div>
             </div>
@@ -1068,8 +1067,8 @@
     </footer>
 
     <script>
-        // Configuração do Worker RPC
-        const RPC_WORKER_URL = 'https://seu-worker.avzinfra.workers.dev'; // ATUALIZE COM SUA URL REAL
+        // Configuração do RPC
+        const RPC_WORKER_URL = 'https://rpc-exclusive.avizaecosystem.workers.dev';
 
         // Efeito de partículas douradas
         function createParticles() {
@@ -1144,10 +1143,10 @@
 
         // Atualizar URLs RPC
         function updateRpcUrls() {
-            document.getElementById('eth-rpc').textContent = `${RPC_WORKER_URL}?chain=ethereum`;
-            document.getElementById('bsc-rpc').textContent = `${RPC_WORKER_URL}?chain=bsc`;
             document.getElementById('polygon-rpc').textContent = `${RPC_WORKER_URL}?chain=polygon`;
-            document.getElementById('avax-rpc').textContent = `${RPC_WORKER_URL}?chain=avalanche`;
+            document.getElementById('ethereum-rpc').textContent = `${RPC_WORKER_URL}?chain=ethereum`;
+            document.getElementById('bsc-rpc').textContent = `${RPC_WORKER_URL}?chain=bsc`;
+            document.getElementById('avalanche-rpc').textContent = `${RPC_WORKER_URL}?chain=avalanche`;
             document.getElementById('arbitrum-rpc').textContent = `${RPC_WORKER_URL}?chain=arbitrum`;
             document.getElementById('base-rpc').textContent = `${RPC_WORKER_URL}?chain=base`;
         }
@@ -1158,10 +1157,31 @@
             const statusSpan = statusElement.querySelector('span');
             
             try {
-                const provider = new ethers.providers.JsonRpcProvider(`${RPC_WORKER_URL}?chain=${chain}`);
-                const blockNumber = await provider.getBlockNumber();
+                const response = await fetch(`${RPC_WORKER_URL}?chain=${chain}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        jsonrpc: "2.0",
+                        method: "eth_blockNumber",
+                        params: [],
+                        id: 1
+                    })
+                });
+
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                const data = await response.json();
                 
-                statusSpan.textContent = `Online (Bloco #${blockNumber})`;
+                if (data.error) {
+                    statusSpan.textContent = 'Erro RPC';
+                    statusSpan.className = 'status-offline';
+                    return;
+                }
+
+                const blockNumber = parseInt(data.result, 16);
+                statusSpan.textContent = `Online (#${blockNumber.toLocaleString()})`;
                 statusSpan.className = 'status-online';
             } catch (error) {
                 statusSpan.textContent = 'Offline';
@@ -1171,11 +1191,10 @@
 
         // Verificar status de todas as blockchains
         async function updateAllBlockchainStatus() {
-            const chains = ['ethereum', 'bsc', 'polygon', 'avalanche', 'arbitrum', 'base'];
+            const chains = ['polygon', 'ethereum', 'bsc', 'avalanche', 'arbitrum', 'base'];
             
             for (const chain of chains) {
                 await checkBlockchainStatus(chain);
-                // Pequeno delay entre verificações
                 await new Promise(resolve => setTimeout(resolve, 500));
             }
         }
@@ -1220,7 +1239,6 @@
             }
 
             try {
-                // Solicitar conexão da conta
                 await window.ethereum.request({ method: 'eth_requestAccounts' });
                 
                 const accounts = await window.ethereum.request({ method: 'eth_accounts' });
@@ -1326,9 +1344,9 @@
         // Função auxiliar para URLs do explorer
         function getExplorerUrl(chain) {
             const explorers = {
+                'polygon': 'polygonscan.com',
                 'ethereum': 'etherscan.io',
                 'bsc': 'bscscan.com',
-                'polygon': 'polygonscan.com',
                 'avalanche': 'snowtrace.io',
                 'arbitrum': 'arbiscan.io',
                 'base': 'basescan.org'
