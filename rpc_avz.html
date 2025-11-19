@@ -6,6 +6,7 @@
     <title>AVZ Infra | MultiChain RPC Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
     <style>
         :root {
             --gold-primary: #D4AF37;
@@ -585,6 +586,13 @@
             font-family: monospace;
             color: var(--gold-light);
             border: 1px solid rgba(212, 175, 55, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .rpc-row code:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold-primary);
         }
 
         /* Footer Luxuoso */
@@ -720,6 +728,28 @@
         /* Classes utilitárias */
         .hidden {
             display: none;
+        }
+
+        .wallet-info {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .status-online {
+            color: #22c55e !important;
+        }
+
+        .status-offline {
+            color: #ef4444 !important;
+        }
+
+        .status-loading {
+            color: #f59e0b !important;
         }
 
         /* Responsive */
@@ -865,10 +895,12 @@
         <div class="container">
             <h2 class="section-title">Status das Blockchains</h2>
             <div class="stats-grid">
-                <div class="stat-card" id="eth-status">Ethereum: Carregando...</div>
-                <div class="stat-card" id="bsc-status">Binance Smart Chain: Carregando...</div>
-                <div class="stat-card" id="polygon-status">Polygon: Carregando...</div>
-                <div class="stat-card" id="avax-status">Avalanche: Carregando...</div>
+                <div class="stat-card" id="eth-status">Ethereum: <span class="status-loading">Verificando...</span></div>
+                <div class="stat-card" id="bsc-status">Binance Smart Chain: <span class="status-loading">Verificando...</span></div>
+                <div class="stat-card" id="polygon-status">Polygon: <span class="status-loading">Verificando...</span></div>
+                <div class="stat-card" id="avax-status">Avalanche: <span class="status-loading">Verificando...</span></div>
+                <div class="stat-card" id="arbitrum-status">Arbitrum: <span class="status-loading">Verificando...</span></div>
+                <div class="stat-card" id="base-status">Base: <span class="status-loading">Verificando...</span></div>
             </div>
         </div>
     </section>
@@ -878,10 +910,12 @@
         <div class="container">
             <h2 class="section-title">Selecione a Blockchain</h2>
             <div class="chain-cards">
-                <div class="chain-card" data-chain="eth">Ethereum</div>
+                <div class="chain-card" data-chain="ethereum">Ethereum</div>
                 <div class="chain-card" data-chain="bsc">Binance Smart Chain</div>
                 <div class="chain-card" data-chain="polygon">Polygon</div>
-                <div class="chain-card" data-chain="avax">Avalanche</div>
+                <div class="chain-card" data-chain="avalanche">Avalanche</div>
+                <div class="chain-card" data-chain="arbitrum">Arbitrum</div>
+                <div class="chain-card" data-chain="base">Base</div>
             </div>
         </div>
     </section>
@@ -893,16 +927,27 @@
                 <h2>Transferência</h2>
                 <p>Rede atual: <span id="current-chain">Nenhuma</span></p>
 
-                <button id="connect-wallet" class="btn btn-primary">Conectar Carteira</button>
+                <div id="wallet-section">
+                    <button id="connect-wallet" class="btn btn-primary">
+                        <i class="fas fa-wallet"></i>
+                        Conectar Carteira
+                    </button>
+                    <div id="wallet-info" class="wallet-info hidden"></div>
+                </div>
 
                 <div class="transfer-form hidden" id="transfer-form">
                     <div class="form-group">
-                        <input type="text" id="transfer-to" class="form-control" placeholder="Endereço de destino" />
+                        <label for="transfer-to">Endereço de destino:</label>
+                        <input type="text" id="transfer-to" class="form-control" placeholder="0x..." />
                     </div>
                     <div class="form-group">
-                        <input type="number" id="transfer-amount" class="form-control" placeholder="Quantidade" />
+                        <label for="transfer-amount">Quantidade (ETH/BNB/MATIC):</label>
+                        <input type="number" id="transfer-amount" class="form-control" placeholder="0.1" step="0.001" />
                     </div>
-                    <button id="send-transaction" class="btn btn-primary">Enviar</button>
+                    <button id="send-transaction" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar Transação
+                    </button>
                 </div>
 
                 <div id="transfer-result"></div>
@@ -918,19 +963,27 @@
                 <div class="rpc-grid">
                     <div class="rpc-row">
                         <span>Ethereum RPC</span>
-                        <code>https://avzinfra.org/rpc/eth</code>
+                        <code id="eth-rpc">https://seu-worker.avzinfra.workers.dev/?chain=ethereum</code>
                     </div>
                     <div class="rpc-row">
                         <span>BSC RPC</span>
-                        <code>https://avzinfra.org/rpc/bsc</code>
+                        <code id="bsc-rpc">https://seu-worker.avzinfra.workers.dev/?chain=bsc</code>
                     </div>
                     <div class="rpc-row">
                         <span>Polygon RPC</span>
-                        <code>https://avzinfra.org/rpc/polygon</code>
+                        <code id="polygon-rpc">https://seu-worker.avzinfra.workers.dev/?chain=polygon</code>
                     </div>
                     <div class="rpc-row">
                         <span>Avalanche RPC</span>
-                        <code>https://avzinfra.org/rpc/avax</code>
+                        <code id="avax-rpc">https://seu-worker.avzinfra.workers.dev/?chain=avalanche</code>
+                    </div>
+                    <div class="rpc-row">
+                        <span>Arbitrum RPC</span>
+                        <code id="arbitrum-rpc">https://seu-worker.avzinfra.workers.dev/?chain=arbitrum</code>
+                    </div>
+                    <div class="rpc-row">
+                        <span>Base RPC</span>
+                        <code id="base-rpc">https://seu-worker.avzinfra.workers.dev/?chain=base</code>
                     </div>
                 </div>
             </div>
@@ -1015,6 +1068,9 @@
     </footer>
 
     <script>
+        // Configuração do Worker RPC
+        const RPC_WORKER_URL = 'https://seu-worker.avzinfra.workers.dev'; // ATUALIZE COM SUA URL REAL
+
         // Efeito de partículas douradas
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
@@ -1024,18 +1080,11 @@
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
                 
-                // Tamanho aleatório entre 2px e 6px
                 const size = Math.random() * 4 + 2;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                
-                // Posição inicial aleatória
                 particle.style.left = `${Math.random() * 100}vw`;
-                
-                // Atraso de animação aleatório
                 particle.style.animationDelay = `${Math.random() * 15}s`;
-                
-                // Duração de animação aleatória
                 const duration = Math.random() * 10 + 15;
                 particle.style.animationDuration = `${duration}s`;
                 
@@ -1093,39 +1142,69 @@
             }
         });
 
-        // Simulação de status das blockchains
-        function updateBlockchainStatus() {
-            const statuses = {
-                'eth-status': { name: 'Ethereum', status: 'Online' },
-                'bsc-status': { name: 'Binance Smart Chain', status: 'Online' },
-                'polygon-status': { name: 'Polygon', status: 'Online' },
-                'avax-status': { name: 'Avalanche', status: 'Online' }
-            };
+        // Atualizar URLs RPC
+        function updateRpcUrls() {
+            document.getElementById('eth-rpc').textContent = `${RPC_WORKER_URL}?chain=ethereum`;
+            document.getElementById('bsc-rpc').textContent = `${RPC_WORKER_URL}?chain=bsc`;
+            document.getElementById('polygon-rpc').textContent = `${RPC_WORKER_URL}?chain=polygon`;
+            document.getElementById('avax-rpc').textContent = `${RPC_WORKER_URL}?chain=avalanche`;
+            document.getElementById('arbitrum-rpc').textContent = `${RPC_WORKER_URL}?chain=arbitrum`;
+            document.getElementById('base-rpc').textContent = `${RPC_WORKER_URL}?chain=base`;
+        }
 
-            for (const [id, data] of Object.entries(statuses)) {
-                const element = document.getElementById(id);
-                element.textContent = `${data.name}: ${data.status}`;
-                element.style.color = data.status === 'Online' ? 'var(--gold-primary)' : '#ff4d4d';
+        // Verificar status das blockchains
+        async function checkBlockchainStatus(chain) {
+            const statusElement = document.getElementById(`${chain}-status`);
+            const statusSpan = statusElement.querySelector('span');
+            
+            try {
+                const provider = new ethers.providers.JsonRpcProvider(`${RPC_WORKER_URL}?chain=${chain}`);
+                const blockNumber = await provider.getBlockNumber();
+                
+                statusSpan.textContent = `Online (Bloco #${blockNumber})`;
+                statusSpan.className = 'status-online';
+            } catch (error) {
+                statusSpan.textContent = 'Offline';
+                statusSpan.className = 'status-offline';
+            }
+        }
+
+        // Verificar status de todas as blockchains
+        async function updateAllBlockchainStatus() {
+            const chains = ['ethereum', 'bsc', 'polygon', 'avalanche', 'arbitrum', 'base'];
+            
+            for (const chain of chains) {
+                await checkBlockchainStatus(chain);
+                // Pequeno delay entre verificações
+                await new Promise(resolve => setTimeout(resolve, 500));
             }
         }
 
         // Seleção de blockchain
+        let currentChain = null;
+        let currentProvider = null;
+        let currentSigner = null;
+
         const chainCards = document.querySelectorAll('.chain-card');
         const currentChainElement = document.getElementById('current-chain');
         
         chainCards.forEach(card => {
             card.addEventListener('click', () => {
-                // Remove active class de todos
                 chainCards.forEach(c => c.classList.remove('active'));
-                
-                // Adiciona active class ao selecionado
                 card.classList.add('active');
                 
-                // Atualiza a rede atual
                 const chainName = card.textContent;
+                const chainId = card.getAttribute('data-chain');
+                currentChain = chainId;
                 currentChainElement.textContent = chainName;
                 
-                // Mostra o formulário de transferência se não estiver visível
+                // Atualizar provider
+                currentProvider = new ethers.providers.JsonRpcProvider(`${RPC_WORKER_URL}?chain=${chainId}`);
+                if (currentSigner) {
+                    currentSigner = currentProvider.getSigner();
+                }
+                
+                // Mostrar formulário de transferência
                 const transferForm = document.getElementById('transfer-form');
                 if (transferForm.classList.contains('hidden')) {
                     transferForm.classList.remove('hidden');
@@ -1133,13 +1212,56 @@
             });
         });
 
-        // Simulação de conexão de carteira
-        document.getElementById('connect-wallet').addEventListener('click', () => {
-            alert('Funcionalidade de conexão de carteira será implementada com Web3.js ou biblioteca similar.');
+        // Conexão de carteira
+        document.getElementById('connect-wallet').addEventListener('click', async () => {
+            if (typeof window.ethereum === 'undefined') {
+                alert('MetaMask não detectado! Por favor, instale MetaMask.');
+                return;
+            }
+
+            try {
+                // Solicitar conexão da conta
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
+                
+                const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                if (accounts.length === 0) {
+                    throw new Error('Nenhuma conta conectada');
+                }
+
+                const walletAddress = accounts[0];
+                const walletInfo = document.getElementById('wallet-info');
+                walletInfo.innerHTML = `Conectado: ${walletAddress.substring(0, 6)}...${walletAddress.substring(38)}`;
+                walletInfo.classList.remove('hidden');
+
+                // Atualizar botão
+                const connectBtn = document.getElementById('connect-wallet');
+                connectBtn.innerHTML = '<i class="fas fa-check"></i> Carteira Conectada';
+                connectBtn.disabled = true;
+
+                // Configurar signer se uma blockchain estiver selecionada
+                if (currentChain && currentProvider) {
+                    const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+                    currentSigner = web3Provider.getSigner();
+                }
+
+            } catch (error) {
+                console.error('Erro ao conectar carteira:', error);
+                alert('Erro ao conectar carteira: ' + error.message);
+            }
         });
 
-        // Simulação de envio de transação
-        document.getElementById('send-transaction').addEventListener('click', () => {
+        // Envio de transação
+        document.getElementById('send-transaction').addEventListener('click', async () => {
+            if (!currentChain) {
+                alert('Por favor, selecione uma blockchain primeiro.');
+                return;
+            }
+
+            if (!currentSigner) {
+                alert('Por favor, conecte sua carteira primeiro.');
+                return;
+            }
+
             const toAddress = document.getElementById('transfer-to').value;
             const amount = document.getElementById('transfer-amount').value;
             
@@ -1147,17 +1269,103 @@
                 alert('Por favor, preencha todos os campos.');
                 return;
             }
-            
-            const resultElement = document.getElementById('transfer-result');
-            resultElement.innerHTML = `
-                <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
-                    <strong>Transação simulada:</strong> ${amount} tokens enviados para ${toAddress}
-                </div>
-            `;
+
+            if (!ethers.utils.isAddress(toAddress)) {
+                alert('Por favor, insira um endereço válido.');
+                return;
+            }
+
+            try {
+                const sendBtn = document.getElementById('send-transaction');
+                sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                sendBtn.disabled = true;
+
+                // Converter quantidade para wei
+                const amountWei = ethers.utils.parseEther(amount);
+
+                // Enviar transação
+                const tx = await currentSigner.sendTransaction({
+                    to: toAddress,
+                    value: amountWei
+                });
+
+                const resultElement = document.getElementById('transfer-result');
+                resultElement.innerHTML = `
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                        <strong>Transação enviada!</strong><br>
+                        Hash: ${tx.hash}<br>
+                        <a href="https://${getExplorerUrl(currentChain)}/tx/${tx.hash}" target="_blank" style="color: var(--gold-primary);">Ver no explorador</a>
+                    </div>
+                `;
+
+                // Aguardar confirmação
+                const receipt = await tx.wait();
+                resultElement.innerHTML += `
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.2); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.5);">
+                        <strong>Transação confirmada!</strong><br>
+                        Bloco: ${receipt.blockNumber}<br>
+                        Gás usado: ${receipt.gasUsed.toString()}
+                    </div>
+                `;
+
+            } catch (error) {
+                console.error('Erro na transação:', error);
+                const resultElement = document.getElementById('transfer-result');
+                resultElement.innerHTML = `
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <strong>Erro na transação:</strong> ${error.message}
+                    </div>
+                `;
+            } finally {
+                const sendBtn = document.getElementById('send-transaction');
+                sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Transação';
+                sendBtn.disabled = false;
+            }
         });
 
-        // Inicializar status das blockchains
-        setTimeout(updateBlockchainStatus, 1000);
+        // Função auxiliar para URLs do explorer
+        function getExplorerUrl(chain) {
+            const explorers = {
+                'ethereum': 'etherscan.io',
+                'bsc': 'bscscan.com',
+                'polygon': 'polygonscan.com',
+                'avalanche': 'snowtrace.io',
+                'arbitrum': 'arbiscan.io',
+                'base': 'basescan.org'
+            };
+            return explorers[chain] || 'etherscan.io';
+        }
+
+        // Copiar RPC para clipboard
+        document.querySelectorAll('.rpc-row code').forEach(code => {
+            code.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(code.textContent);
+                    
+                    // Efeito visual de cópia
+                    const originalText = code.textContent;
+                    code.textContent = 'Copiado!';
+                    code.style.background = 'rgba(34, 197, 94, 0.2)';
+                    
+                    setTimeout(() => {
+                        code.textContent = originalText;
+                        code.style.background = '';
+                    }, 2000);
+                    
+                } catch (error) {
+                    console.error('Erro ao copiar:', error);
+                }
+            });
+        });
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            updateRpcUrls();
+            updateAllBlockchainStatus();
+            
+            // Verificar status a cada 30 segundos
+            setInterval(updateAllBlockchainStatus, 30000);
+        });
     </script>
 </body>
 </html>
