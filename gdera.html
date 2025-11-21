@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVZ GDERA | Global Digital Enterprise Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-secondary: #F4E4B8;
+            --gold-accent: #B8860B;
+            --gold-light: #FFE87C;
+            --carbon: #1A1A1A;
+            --obsidian: #0A0A0A;
+            --emerald: #046307;
+            --sapphire: #0F52BA;
+            --platinum: #E5E4E2;
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow-luxury: 0 25px 50px rgba(0, 0, 0, 0.25);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.4);
+            --shadow-gold-strong: 0 0 30px rgba(212, 175, 55, 0.6);
+            --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);
+            --gradient-gold-hover: linear-gradient(135deg, #E5BF40 0%, #F9EBC8 50%, #C89610 100%);
+            --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%);
+            --gradient-gold-text: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #FFD700 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-dark);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Efeito de partículas douradas */
+        .gold-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, var(--gold-primary) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle 15s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Header Luxuoso */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            position: relative;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gradient-gold);
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        }
+
+        .logo-tagline {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--gold-secondary);
+            margin-top: 3px;
+            font-weight: 300;
+            font-family: 'Marcellus', serif;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--platinum);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            position: relative;
+            font-family: 'Marcellus', serif;
+            padding: 5px 0;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient-gold);
+            transition: width 0.4s ease;
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+        }
+
+        .nav-menu a:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        /* Botões CTA */
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: 'Marcellus', serif;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-gold);
+            color: var(--carbon);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-primary:hover {
+            background: var(--gradient-gold-hover);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-gold-strong);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold-primary);
+            border: 1px solid var(--gold-primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(244, 228, 184, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+                var(--gradient-dark);
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            margin-bottom: 1.8rem;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            100% { text-shadow: 0 0 30px rgba(212, 175, 55, 0.6), 0 0 40px rgba(212, 175, 55, 0.4); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: var(--platinum);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            font-family: 'Marcellus', serif;
+            letter-spacing: 0.5px;
+        }
+
+        /* Seções */
+        .section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Cards de Funcionalidades */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-luxury);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--gold-primary);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .feature-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold-primary);
+            letter-spacing: 1px;
+        }
+
+        .feature-card p {
+            color: var(--platinum);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Dashboard Preview */
+        .dashboard-preview {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            margin-top: 3rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            text-align: center;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .status-active { background: #22C55E; box-shadow: 0 0 10px #22C55E; }
+        .status-pending { background: #F59E0B; box-shadow: 0 0 10px #F59E0B; }
+        .status-non-compliant { background: #EF4444; box-shadow: 0 0 10px #EF4444; }
+
+        /* Fluxograma */
+        .flowchart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .flow-step {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            min-width: 200px;
+            position: relative;
+        }
+
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold-primary);
+            font-size: 2rem;
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        /* Tabela de Preços */
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--gold-primary);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            margin: 1rem 0;
+            font-family: 'Cinzel', serif;
+        }
+
+        .pricing-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--gold-primary);
+        }
+
+        .pricing-card p {
+            margin: 0.5rem 0;
+            color: var(--platinum);
+        }
+
+        /* Asset Preview */
+        .asset-preview {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .asset-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .asset-type {
+            color: var(--gold-primary);
+            font-weight: 600;
+            font-family: 'Cinzel', serif;
+        }
+
+        .asset-value {
+            color: var(--platinum);
+            font-size: 1.2rem;
+        }
+
+        .asset-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(10, 10, 10, 0.95);
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--gold-primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--gold-light);
+            transform: translateY(-3px);
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+            color: var(--platinum);
+        }
+
+        /* Menu Mobile */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+                gap: 1.5rem;
+                border-top: 1px solid rgba(212, 175, 55, 0.3);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .flowchart {
+                flex-direction: column;
+            }
+
+            .flow-step::after {
+                content: '↓';
+                right: 50%;
+                top: auto;
+                bottom: -30px;
+                transform: translateX(50%);
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeito de partículas douradas -->
+    <div class="gold-particles" id="particles"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div>
+                <div class="logo">AVZ GDERA</div>
+                <div class="logo-tagline">GLOBAL DIGITAL ENTERPRISE REGISTRY</div>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#visao">Visão</a></li>
+                <li><a href="#funcionalidades">Funcionalidades</a></li>
+                <li><a href="#fluxograma">Fluxo</a></li>
+                <li><a href="#precos">Planos</a></li>
+                <li><a href="#tecnologia">Tecnologia</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Empresas Digitais Globais</h1>
+            <p>Registro internacional de empresas com CNPJ global, endereço virtual válido e garantia de ativos reais via blockchain.</p>
+            <div class="cta-buttons">
+                <a href="#precos" class="btn btn-primary">
+                    <i class="fas fa-crown"></i>
+                    Registrar Empresa
+                </a>
+                <a href="#tecnologia" class="btn btn-secondary">
+                    <i class="fas fa-code"></i>
+                    Ver Tecnologia
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visão Geral -->
+    <section id="visao" class="section">
+        <div class="container">
+            <h2 class="section-title">Visão do Sistema GDERA</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Empresa Digital Global</h3>
+                    <p>CNPJ internacional com endereço virtual legalmente válido em múltiplas jurisdições.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>Ativos Reais Garantidores</h3>
+                    <p>Registro de imóveis, veículos, metais e participações via NFT jurídico.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Compliance Automatizado</h3>
+                    <p>Verificação automática de obrigações legais baseada na jurisdição.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fluxograma -->
+    <section id="fluxograma" class="section">
+        <div class="container">
+            <h2 class="section-title">Fluxo do Sistema</h2>
+            <div class="flowchart">
+                <div class="flow-step">
+                    <h4>1. Registro</h4>
+                    <p>Empresa cria ID global</p>
+                </div>
+                <div class="flow-step">
+                    <h4>2. Ativos</h4>
+                    <p>Vincula ativos reais via NFT</p>
+                </div>
+                <div class="flow-step">
+                    <h4>3. Compliance</h4>
+                    <p>Checklist automático</p>
+                </div>
+                <div class="flow-step">
+                    <h4>4. Monitoramento</h4>
+                    <p>Status em tempo real</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview -->
+    <section id="funcionalidades" class="section">
+        <div class="container">
+            <h2 class="section-title">Painel de Controle</h2>
+            <div class="dashboard-preview">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h4>Status da Empresa</h4>
+                        <p><span class="status-indicator status-active"></span> Active & Compliant</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h4>Ativos Registrados</h4>
+                        <p class="price">8</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h4>Obrigações</h4>
+                        <p>3/3 Cumpridas</p>
+                    </div>
+                </div>
+                
+                <h4 style="color: var(--gold-primary); margin-bottom: 1rem;">Ativos Registrados:</h4>
+                <div class="asset-preview">
+                    <div class="asset-info">
+                        <span class="asset-type">Propriedade Comercial</span>
+                        <span class="asset-value">Singapura - $2.500.000</span>
+                    </div>
+                    <div class="asset-status">
+                        <span class="status-indicator status-active"></span>
+                        <span>Verificado</span>
+                    </div>
+                </div>
+                <div class="asset-preview">
+                    <div class="asset-info">
+                        <span class="asset-type">Portfólio de Metais</span>
+                        <span class="asset-value">Ouro & Prata - $1.200.000</span>
+                    </div>
+                    <div class="asset-status">
+                        <span class="status-indicator status-active"></span>
+                        <span>Verificado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planos e Preços -->
+    <section id="precos" class="section">
+        <div class="container">
+            <h2 class="section-title">Planos e Taxas</h2>
+            <div class="pricing-table">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">$5.000</div>
+                    <p>5 ativos incluídos</p>
+                    <p>Compliance básico</p>
+                    <p>Suporte padrão</p>
+                    <a href="#" class="btn btn-secondary" style="margin-top: 1.5rem;">Selecionar</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Professional</h3>
+                    <div class="price">$15.000</div>
+                    <p>Ativos ilimitados</p>
+                    <p>Compliance avançado</p>
+                    <p>Suporte prioritário</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1.5rem;">Selecionar</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$50.000</div>
+                    <p>Ativos + Auditoria</p>
+                    <p>Compliance corporativo</p>
+                    <p>Suporte dedicado</p>
+                    <a href="#" class="btn btn-secondary" style="margin-top: 1.5rem;">Selecionar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tecnologia -->
+    <section id="tecnologia" class="section">
+        <div class="container">
+            <h2 class="section-title">Tecnologia Blockchain</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fab fa-ethereum"></i>
+                    </div>
+                    <h3>Smart Contracts</h3>
+                    <p>Contratos automáticos para compliance e penalidades</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>NFTs Jurídicos</h3>
+                    <p>Representação digital de ativos reais com validade legal</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Layer 2 AVZ Chain</h3>
+                    <p>Blockchain privada para transações rápidas e seguras</p>
+                </div>
+            </div>
+
+            <div class="dashboard-preview" style="margin-top: 3rem;">
+                <h4 style="color: var(--gold-primary); margin-bottom: 1rem;">Vantagens da Tecnologia:</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <h5 style="color: var(--gold-primary); margin-bottom: 0.5rem;">Imutabilidade</h5>
+                        <p style="color: var(--platinum);">Registros permanentes e inalteráveis garantem a integridade dos dados.</p>
+                    </div>
+                    <div>
+                        <h5 style="color: var(--gold-primary); margin-bottom: 0.5rem;">Transparência</h5>
+                        <p style="color: var(--platinum);">Todas as transações são auditáveis por autoridades competentes.</p>
+                    </div>
+                    <div>
+                        <h5 style="color: var(--gold-primary); margin-bottom: 0.5rem;">Automação</h5>
+                        <p style="color: var(--platinum);">Processos de compliance executados automaticamente sem intervenção manual.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+            <p>&copy; 2024 AVZ GDERA. Todos os direitos reservados.</p>
+            <p style="color: var(--gold-primary); font-size: 0.9rem; font-family: 'Cinzel', serif;">
+                "Registro digital global com segurança blockchain"
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Efeito de partículas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particlesCount = 30;
+            
+            for (let i = 0; i < particlesCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                const duration = Math.random() * 10 + 15;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+
+        // Menu mobile
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
