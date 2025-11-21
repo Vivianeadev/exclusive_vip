@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-bybit-channel-name="vJ0CoozuLam0jKOMKfydr" data-bybit-is-default-wallet="true">
+<html lang="pt-BR">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVZ Infra | Infraestrutura Blockchain e Soluções PropTech</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&family=Marcellus&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --gold-primary: #D4AF37;
@@ -111,13 +111,6 @@
             letter-spacing: 2px;
             position: relative;
             text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
         }
 
         .logo::after {
@@ -236,10 +229,6 @@
             letter-spacing: 1px;
             text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
             animation: titleGlow 3s ease-in-out infinite alternate;
-        }
-
-        .hero h1 .blockchain-text {
-            font-size: 0.55em; /* Reduzindo um pouco o tamanho da palavra Blockchain */
         }
 
         @keyframes titleGlow {
@@ -383,14 +372,14 @@
             box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
 
-        /* Produtos Luxuosos */
-        .products-grid {
+        /* Especialidades */
+        .expertise-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2.5rem;
         }
 
-        .product-card {
+        .expertise-card {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             padding: 3rem 2.5rem;
@@ -402,7 +391,7 @@
             backdrop-filter: blur(10px);
         }
 
-        .product-card::before {
+        .expertise-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -414,17 +403,17 @@
             transition: var(--transition);
         }
 
-        .product-card:hover {
+        .expertise-card:hover {
             transform: translateY(-10px);
             border-color: var(--gold-primary);
             box-shadow: var(--shadow-luxury);
         }
 
-        .product-card:hover::before {
+        .expertise-card:hover::before {
             opacity: 1;
         }
 
-        .product-icon {
+        .expertise-icon {
             font-size: 3.5rem;
             margin-bottom: 2rem;
             color: var(--gold-primary);
@@ -432,12 +421,12 @@
             transition: var(--transition);
         }
 
-        .product-card:hover .product-icon {
+        .expertise-card:hover .expertise-icon {
             transform: scale(1.1);
             text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
         }
 
-        .product-card h3 {
+        .expertise-card h3 {
             font-family: 'Cinzel', serif;
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
@@ -445,7 +434,7 @@
             letter-spacing: 1px;
         }
 
-        .product-card p {
+        .expertise-card p {
             color: var(--platinum);
             margin-bottom: 2rem;
             font-size: 1rem;
@@ -651,6 +640,7 @@
         .footer {
             background: #000;
             padding: 4rem 2rem 2rem;
+            text-align: center;
             border-top: 1px solid rgba(212, 175, 55, 0.3);
             position: relative;
         }
@@ -665,106 +655,16 @@
             background: var(--gradient-gold);
         }
 
-        .footer-container {
+        .footer-content {
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .footer-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.7), transparent);
-            margin-bottom: 2.5rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .footer-column h3 {
-            color: var(--gold-primary);
-            font-size: 1.1rem;
-            margin-bottom: 1.2rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-family: 'Cinzel', serif;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: #a0a0a0;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            display: inline-block;
+        .footer p {
+            color: #888;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
             font-family: 'Marcellus', serif;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold-primary);
-            transform: translateX(5px);
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-bottom p {
-            color: #808080;
-            font-size: 0.8rem;
-            margin: 0;
-            font-family: 'Marcellus', serif;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-social a {
-            color: #a0a0a0;
-            text-decoration: none;
-            font-size: 0.8rem;
-            transition: color 0.3s ease;
-            font-family: 'Marcellus', serif;
-        }
-
-        .footer-social a:hover {
-            color: var(--gold-primary);
-        }
-
-        .language-selector {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #a0a0a0;
-            font-size: 0.8rem;
-            margin-top: 1.5rem;
-            font-family: 'Marcellus', serif;
-        }
-
-        .language-selector select {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #a0a0a0;
-            padding: 0.3rem;
-            border-radius: 4px;
         }
 
         .social-links {
@@ -865,21 +765,12 @@
                 font-size: 1.1rem;
             }
 
-            .products-grid {
+            .expertise-grid {
                 grid-template-columns: 1fr;
             }
 
-            .product-card {
+            .expertise-card {
                 padding: 2rem 1.5rem;
-            }
-
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
             }
         }
 
@@ -912,10 +803,6 @@
                 padding: 0.8rem 1.5rem;
                 font-size: 0.9rem;
             }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -924,10 +811,10 @@
     <div class="gold-particles" id="particles"></div>
 
     <!-- Header -->
-    <header class="header" style="background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(20px);">
+    <header class="header">
         <nav class="nav-container">
             <div>
-                <div class="logo" id="logo">AVZ INFRA</div>
+                <div class="logo">AVZ INFRA</div>
                 <div class="logo-tagline">TECHNOLOGY INFRASTRUCTURE</div>
             </div>
             <button class="mobile-menu-toggle" id="mobileMenuToggle">
@@ -936,7 +823,7 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home">Início</a></li>
                 <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#especialidades">Especialidades</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
@@ -945,61 +832,45 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1><span class="blockchain-text">Soluções em Blockchain</span></h1>
-            <p>Desenvolvemos tecnologia de ponta com foco em blockchain, sistemas multi-chain e PropTech para transformar negócios e setores inteiros.</p>
+            <h1>Tecnologia Blockchain de Classe Mundial</h1>
+            <p>Desenvolvemos infraestrutura tecnológica avançada com foco em blockchain, sistemas multi-chain e soluções PropTech para transformar negócios e setores inteiros.</p>
             <div class="cta-buttons">
-                <a href="#produtos" class="btn btn-primary">
-                    <i class="fas fa-gem"></i>
-                    Nossos Produtos
-                </a>
-                <a href="#contato" class="btn btn-secondary">
+                <a href="#contato" class="btn btn-primary">
                     <i class="fas fa-crown"></i>
-                    Deseja Começar um Projeto para sua empresa? Fale conosco
+                    Iniciar Projeto
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Produtos Section -->
-    <section id="produtos" class="section">
+    <!-- Especialidades Section -->
+    <section id="especialidades" class="section">
         <div class="container">
-            <h2 class="section-title">Nossos Produtos</h2>
+            <h2 class="section-title">Nossas Especialidades</h2>
             
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-icon">
-                        <i class="fas fa-gem"></i>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-link"></i>
                     </div>
-                    <h3>Exclusive Wallet</h3>
-                    <p>Carteira digital premium para gerenciamento multi-chain de ativos digitais, com segurança de nível institucional e interface luxuosa.</p>
-                    <a href="exclusive_wallet.html" class="btn btn-primary">
-                        <i class="fas fa-external-link-alt"></i>
-                        Saiba Mais
-                    </a>
+                    <h3>Infraestrutura Blockchain</h3>
+                    <p>Desenvolvemos e implementamos soluções de infraestrutura blockchain robustas e escaláveis para empresas que buscam inovar com tecnologia descentralizada.</p>
                 </div>
 
-                <div class="product-card">
-                    <div class="product-icon">
-                        <i class="fas fa-crown"></i>
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-network-wired"></i>
                     </div>
-                    <h3>AVZ Infra</h3>
-                    <p>Infraestrutura completa para operação em múltiplas blockchains, incluindo Ethereum, Polygon, BSC, Avalanche e outras redes principais.</p>
-                    <a href="rpc_avz.html" class="btn btn-primary">
-                        <i class="fas fa-plug"></i>
-                        Conectar
-                    </a>
+                    <h3>Sistemas Multi-Chain</h3>
+                    <p>Integração e desenvolvimento de soluções que operam em múltiplas blockchains, garantindo interoperabilidade e flexibilidade para nossos clientes.</p>
                 </div>
 
-                <div class="product-card">
-                    <div class="product-icon">
-                        <i class="fas fa-landmark"></i>
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-building"></i>
                     </div>
                     <h3>Soluções PropTech</h3>
                     <p>Plataformas imobiliárias digitais com tokenização de ativos, contratos inteligentes e gestão descentralizada para o mercado imobiliário.</p>
-                    <a href="#contato" class="btn btn-primary">
-                        <i class="fas fa-home"></i>
-                        Explorar
-                    </a>
                 </div>
             </div>
         </div>
@@ -1037,8 +908,11 @@
                         AVZ
                     </div>
                     <p style="margin-top: 2rem; color: var(--gold-primary); font-weight: 600; letter-spacing: 2px; font-family: 'Cinzel', serif;">
-                        INFRAESTRUTURA • TECNOLOGIA • INOVAÇÃO - Descentralização global, implementação local, segurança e conformidade para cada mercado
-                    </p>
+    INFRAESTRUTURA • TECNOLOGIA • INOVAÇÃO
+</p>
+<p style="margin-top: 1rem; color: var(--gold-secondary); font-size: 1.1rem; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+    Descentralização global, implementação local, segurança e conformidade para cada mercado
+</p>
                 </div>
             </div>
         </div>
@@ -1127,78 +1001,17 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-divider"></div>
-            
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Sobre a Empresa</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Sobre a Empresa</a></li>
-                        <li><a href="#">Conheça a Plataforma</a></li>
-                        <li><a href="#">Anúncios</a></li>
-                        <li><a href="#">Declaração de Riscos</a></li>
-                        <li><a href="#">Canal de Denúncias</a></li>
-                        <li><a href="#">Carreiras</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Serviços</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Compre com Apenas um Clique</a></li>
-                        <li><a href="#">Afiliados</a></li>
-                        <li><a href="#">Representantes</a></li>
-                        <li><a href="#">Serviços para Empresas</a></li>
-                        <li><a href="#">Listagem de Projetos</a></li>
-                        <li><a href="#">Auditoria</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Suporte</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Enviar uma Solicitação</a></li>
-                        <li><a href="#">Central de Ajuda</a></li>
-                        <li><a href="#">Central de Suporte</a></li>
-                        <li><a href="#">Feedback do Usuário</a></li>
-                        <li><a href="#">Tutoriais</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Produtos</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">TradingView</a></li>
-                    </ul>
-                    
-                    <div class="language-selector">
-                        <span>Idioma:</span>
-                        <select>
-                            <option>Português</option>
-                            <option>English</option>
-                            <option>Español</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>© 2025 AVZ Infra. Todos os direitos reservados.</p>
-                <div class="footer-social">
-                    <a href="#">Termos de Serviço</a>
-                    <a href="#">Política de Privacidade</a>
-                    <a href="#">Cookies</a>
-                    <a href="#">Mapa do Site</a>
-                </div>
-            </div>
-
+        <div class="footer-content">
             <div class="social-links">
                 <a href="#"><i class="fab fa-linkedin"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-github"></i></a>
                 <a href="#"><i class="fab fa-medium"></i></a>
             </div>
+            <p>&copy; 2025 AVZ Infra. Todos os direitos reservados.</p>
+            <p style="color: var(--gold-primary); font-size: 0.9rem; font-family: 'Cinzel', serif;">
+                "Construindo a infraestrutura que conecta o presente ao futuro."
+            </p>
         </div>
     </footer>
 
@@ -1286,11 +1099,6 @@
             e.preventDefault();
             alert('Obrigado pelo seu interesse! Nossa equipe entrará em contato em breve.');
             this.reset();
-        });
-
-        // Logo click event to open rpc_avz.html
-        document.getElementById('logo').addEventListener('click', function() {
-            window.location.href = 'rpc_avz.html';
         });
     </script>
 </body>
