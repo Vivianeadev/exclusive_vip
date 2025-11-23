@@ -1,1 +1,1163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVZ Infra | MultiChain RPC Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-secondary: #F4E4B8;
+            --gold-accent: #B8860B;
+            --gold-light: #FFE87C;
+            --carbon: #1A1A1A;
+            --obsidian: #0A0A0A;
+            --emerald: #046307;
+            --sapphire: #0F52BA;
+            --platinum: #E5E4E2;
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow-luxury: 0 25px 50px rgba(0, 0, 0, 0.25);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.4);
+            --shadow-gold-strong: 0 0 30px rgba(212, 175, 55, 0.6);
+            --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);
+            --gradient-gold-hover: linear-gradient(135deg, #E5BF40 0%, #F9EBC8 50%, #C89610 100%);
+            --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%);
+            --gradient-gold-text: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #FFD700 100%);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-dark);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Efeito de partículas douradas de fundo */
+        .gold-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, var(--gold-primary) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle 15s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Header Luxuoso */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            position: relative;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gradient-gold);
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        }
+
+        .logo-tagline {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--gold-secondary);
+            margin-top: 3px;
+            font-weight: 300;
+            font-family: 'Marcellus', serif;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--platinum);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            position: relative;
+            font-family: 'Marcellus', serif;
+            padding: 5px 0;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient-gold);
+            transition: width 0.4s ease;
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+        }
+
+        .nav-menu a:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        /* Menu Mobile */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Hero Section Luxuosa */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(244, 228, 184, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+                var(--gradient-dark);
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23D4AF37" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            margin-bottom: 1.8rem;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(212, 175, 55, 0.6), 0 0 40px rgba(212, 175, 55, 0.4);
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: var(--platinum);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            font-family: 'Marcellus', serif;
+            letter-spacing: 0.5px;
+        }
+
+        /* Seções Luxuosas */
+        .section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: var(--gradient-gold-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Botões Luxuosos */
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: var(--transition);
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.8s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-gold);
+            color: #000;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold-strong);
+            background: var(--gradient-gold-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--platinum);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold-primary);
+            color: var(--gold-light);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-secondary:hover::after {
+            left: 100%;
+        }
+
+        /* Dashboard Técnico */
+        .dashboard {
+            margin-bottom: 4rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold-primary);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-luxury);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Cards das Blockchains */
+        .chains-section {
+            margin-bottom: 4rem;
+        }
+
+        .chain-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .chain-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold-primary);
+            cursor: pointer;
+        }
+
+        .chain-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .chain-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-luxury);
+        }
+
+        .chain-card:hover::before {
+            opacity: 1;
+        }
+
+        .chain-card.active {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* Painel de Transferência */
+        .transfer-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: 4rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .transfer-panel h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold-primary);
+            letter-spacing: 1px;
+        }
+
+        .transfer-panel p {
+            color: var(--platinum);
+            margin-bottom: 2rem;
+            font-family: 'Marcellus', serif;
+        }
+
+        .transfer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--platinum);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            font-family: 'Marcellus', serif;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* RPC Section */
+        .rpc-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .rpc-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--gold-primary);
+            letter-spacing: 1px;
+        }
+
+        .rpc-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .rpc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--gold-primary);
+            transition: var(--transition);
+        }
+
+        .rpc-row:hover {
+            transform: translateX(10px);
+            border-left: 4px solid var(--gold-light);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .rpc-row span {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 600;
+        }
+
+        .rpc-row code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            color: var(--gold-light);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* Footer Luxuoso */
+        .footer {
+            background: #000;
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--gradient-gold);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.7), transparent);
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-column h3 {
+            color: var(--gold-primary);
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-family: 'Marcellus', serif;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-primary);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: #808080;
+            font-size: 0.8rem;
+            margin: 0;
+            font-family: 'Marcellus', serif;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-social a {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+            font-family: 'Marcellus', serif;
+        }
+
+        .footer-social a:hover {
+            color: var(--gold-primary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .social-links a {
+            color: var(--gold-primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .social-links a:hover {
+            color: var(--gold-light);
+            transform: translateY(-5px);
+            background: rgba(212, 175, 55, 0.2);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* Classes utilitárias */
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+                border-top: 1px solid rgba(212, 175, 55, 0.3);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.2rem, 8vw, 3.5rem);
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .stats-grid, .chain-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .transfer-panel, .rpc-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .rpc-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .logo-tagline {
+                font-size: 0.6rem;
+            }
+
+            .hero {
+                padding: 120px 1rem 0;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeito de partículas douradas -->
+    <div class="gold-particles" id="particles"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div>
+                <div class="logo">AVZ INFRA</div>
+                <div class="logo-tagline">TECHNOLOGY INFRASTRUCTURE</div>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#chains">Blockchains</a></li>
+                <li><a href="#transfer">Transferência</a></li>
+                <li><a href="#rpc">RPC</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>MultiChain RPC Hub</h1>
+            <p>Gerencie acesso RPC, status das blockchains e execute transações em um único painel premium.</p>
+            <div class="cta-buttons">
+                <a href="#dashboard" class="btn btn-primary">
+                    <i class="fas fa-gem"></i>
+                    Ver Dashboard
+                </a>
+                <a href="#rpc" class="btn btn-secondary">
+                    <i class="fas fa-crown"></i>
+                    Explorar Endpoints RPC
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD TÉCNICO -->
+    <section id="dashboard" class="section">
+        <div class="container">
+            <h2 class="section-title">Status das Blockchains</h2>
+            <div class="stats-grid">
+                <div class="stat-card" id="eth-status">Ethereum: Carregando...</div>
+                <div class="stat-card" id="bsc-status">Binance Smart Chain: Carregando...</div>
+                <div class="stat-card" id="polygon-status">Polygon: Carregando...</div>
+                <div class="stat-card" id="avax-status">Avalanche: Carregando...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARDS DAS BLOCKCHAINS -->
+    <section id="chains" class="section">
+        <div class="container">
+            <h2 class="section-title">Selecione a Blockchain</h2>
+            <div class="chain-cards">
+                <div class="chain-card" data-chain="eth">Ethereum</div>
+                <div class="chain-card" data-chain="bsc">Binance Smart Chain</div>
+                <div class="chain-card" data-chain="polygon">Polygon</div>
+                <div class="chain-card" data-chain="avax">Avalanche</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAINEL DE TRANSFERÊNCIA -->
+    <section id="transfer" class="section">
+        <div class="container">
+            <div class="transfer-panel">
+                <h2>Transferência</h2>
+                <p>Rede atual: <span id="current-chain">Nenhuma</span></p>
+
+                <button id="connect-wallet" class="btn btn-primary">Conectar Carteira</button>
+
+                <div class="transfer-form hidden" id="transfer-form">
+                    <div class="form-group">
+                        <input type="text" id="transfer-to" class="form-control" placeholder="Endereço de destino" />
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="transfer-amount" class="form-control" placeholder="Quantidade" />
+                    </div>
+                    <button id="send-transaction" class="btn btn-primary">Enviar</button>
+                </div>
+
+                <div id="transfer-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RPC COPY BOX -->
+    <section id="rpc" class="section">
+        <div class="container">
+            <div class="rpc-section">
+                <h2>Endpoints RPC</h2>
+                <div class="rpc-grid">
+                    <div class="rpc-row">
+                        <span>Ethereum RPC</span>
+                        <code>https://rpcethereum-fast.avizaecosystem.workers.dev</code>
+                    </div>
+                    <div class="rpc-row">
+                        <span>BSC RPC</span>
+                        <code>https://rpcbnb-fast.avizaecosystem.workers.dev</code>
+                    </div>
+                    <div class="rpc-row">
+                        <span>Polygon RPC</span>
+                        <code>https://rpcpolygon-fast.avizaecosystem.workers.dev</code>
+                    </div>
+                    <div class="rpc-row">
+                        <span>Avalanche RPC</span>
+                        <code>https://rpcavax-fast.avizaecosystem.workers.dev</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-divider"></div>
+            
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sobre a Empresa</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Sobre a Empresa</a></li>
+                        <li><a href="#">Conheça a Plataforma</a></li>
+                        <li><a href="#">Anúncios</a></li>
+                        <li><a href="#">Declaração de Riscos</a></li>
+                        <li><a href="#">Canal de Denúncias</a></li>
+                        <li><a href="#">Carreiras</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Serviços</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Compre com Apenas um Clique</a></li>
+                        <li><a href="#">Afiliados</a></li>
+                        <li><a href="#">Representantes</a></li>
+                        <li><a href="#">Serviços para Empresas</a></li>
+                        <li><a href="#">Listagem de Projetos</a></li>
+                        <li><a href="#">Auditoria</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Suporte</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Enviar uma Solicitação</a></li>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Central de Suporte</a></li>
+                        <li><a href="#">Feedback do Usuário</a></li>
+                        <li><a href="#">Tutoriais</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Produtos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">TradingView</a></li>
+                    </ul>
+                    
+                    <div class="language-selector">
+                        <span>Idioma:</span>
+                        <select>
+                            <option>Português</option>
+                            <option>English</option>
+                            <option>Español</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 AVZ Infra. Todos os direitos reservados.</p>
+                <div class="footer-social">
+                    <a href="#">Termos de Serviço</a>
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">Mapa do Site</a>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-medium"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Efeito de partículas douradas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particlesCount = 30;
+            
+            for (let i = 0; i < particlesCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamanho aleatório entre 2px e 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posição inicial aleatória
+                particle.style.left = `${Math.random() * 100}vw`;
+                
+                // Atraso de animação aleatório
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                // Duração de animação aleatória
+                const duration = Math.random() * 10 + 15;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+
+        // Menu mobile toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.backdropFilter = 'blur(15px)';
+            }
+        });
+
+        // Simulação de status das blockchains
+        function updateBlockchainStatus() {
+            const statuses = {
+                'eth-status': { name: 'Ethereum', status: 'Online' },
+                'bsc-status': { name: 'Binance Smart Chain', status: 'Online' },
+                'polygon-status': { name: 'Polygon', status: 'Online' },
+                'avax-status': { name: 'Avalanche', status: 'Online' }
+            };
+
+            for (const [id, data] of Object.entries(statuses)) {
+                const element = document.getElementById(id);
+                element.textContent = `${data.name}: ${data.status}`;
+                element.style.color = data.status === 'Online' ? 'var(--gold-primary)' : '#ff4d4d';
+            }
+        }
+
+        // Seleção de blockchain
+        const chainCards = document.querySelectorAll('.chain-card');
+        const currentChainElement = document.getElementById('current-chain');
+        
+        chainCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Remove active class de todos
+                chainCards.forEach(c => c.classList.remove('active'));
+                
+                // Adiciona active class ao selecionado
+                card.classList.add('active');
+                
+                // Atualiza a rede atual
+                const chainName = card.textContent;
+                currentChainElement.textContent = chainName;
+                
+                // Mostra o formulário de transferência se não estiver visível
+                const transferForm = document.getElementById('transfer-form');
+                if (transferForm.classList.contains('hidden')) {
+                    transferForm.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Simulação de conexão de carteira
+        document.getElementById('connect-wallet').addEventListener('click', () => {
+            alert('Funcionalidade de conexão de carteira será implementada com Web3.js ou biblioteca similar.');
+        });
+
+        // Simulação de envio de transação
+        document.getElementById('send-transaction').addEventListener('click', () => {
+            const toAddress = document.getElementById('transfer-to').value;
+            const amount = document.getElementById('transfer-amount').value;
+            
+            if (!toAddress || !amount) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+            
+            const resultElement = document.getElementById('transfer-result');
+            resultElement.innerHTML = `
+                <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                    <strong>Transação simulada:</strong> ${amount} tokens enviados para ${toAddress}
+                </div>
+            `;
+        });
+
+        // Inicializar status das blockchains
+        setTimeout(updateBlockchainStatus, 1000);
+    </script>
+</body>
+</html>
