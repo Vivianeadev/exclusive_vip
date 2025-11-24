@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mulheres Influenciando o Mundo: Revolução Digital no Mundo Árabe</title>
+    
+    <!-- Fontes Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* [TODO O CSS PERMANECE EXATAMENTE IGUAL] */
+        /* VARIÁVEIS DE DESIGN LUXUOSO */
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-secondary: #F4E4B8;
+            --gold-accent: #B8860B;
+            --gold-dark: #8B6914;
+            --platinum: #E5E4E2;
+            --carbon: #1A1A1A;
+            --obsidian: #0A0A0A;
+            --emerald: #046307;
+            --emerald-light: #0A8C0F;
+            --sapphire: #0F52BA;
+            --ruby: #E0115F;
+            --diamond: #B9F2FF;
+            --transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow-luxury: 0 25px 50px rgba(0, 0, 0, 0.1), 0 15px 30px rgba(0, 0, 0, 0.08);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.25);
+            --shadow-emerald: 0 8px 32px rgba(4, 99, 7, 0.25);
+            --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);
+            --gradient-emerald: linear-gradient(135deg, #046307 0%, #0A8C0F 50%, #034A05 100%);
+            --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%);
+            --gradient-card: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(244, 228, 184, 0.05) 100%);
+            --gradient-emerald-card: linear-gradient(135deg, rgba(4, 99, 7, 0.1) 0%, rgba(10, 140, 15, 0.05) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background: var(--obsidian);
+            min-height: 100vh;
+            color: var(--platinum);
+            transition: var(--transition);
+            font-weight: 300;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(244, 228, 184, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(184, 134, 11, 0.03) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundShift {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+            100% {
+                transform: scale(1.1) rotate(3deg);
+            }
+        }
+
+        /* CONTAINER PRINCIPAL LUXUOSO */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* LANGUAGE SELECTOR */
+        .language-selector {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold-primary);
+        }
+
+        /* HEADER LUXUOSO */
+        header {
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            animation: fadeInDown 1s 0.3s both;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: var(--gradient-gold);
+        }
+
+        .logo {
+            text-align: center;
+        }
+        
+        .logo h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: var(--platinum);
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+        }
+        
+        .logo h1::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-gold);
+            border-radius: 2px;
+        }
+        
+        .logo span {
+            display: block;
+            font-size: 12px;
+            letter-spacing: 10px;
+            margin-top: 15px;
+            color: var(--gold-secondary);
+            font-weight: 300;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--platinum);
+            margin-bottom: 30px;
+            line-height: 1.3;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+            animation: fadeInUp 1s 0.5s both;
+        }
+
+        .hero h1 span {
+            color: var(--gold-primary);
+            position: relative;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-gold);
+        }
+
+        .hero p {
+            font-size: 22px;
+            line-height: 1.8;
+            color: var(--gold-secondary);
+            margin-bottom: 50px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            animation: fadeInUp 1s 0.7s both;
+        }
+
+        /* BOTÕES LUXUOSOS */
+        .btn {
+            padding: 20px 40px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.8s ease;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-emerald);
+            color: white;
+            box-shadow: var(--shadow-emerald);
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 15px 40px rgba(4, 99, 7, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold-secondary);
+            border: 1px solid var(--gold-primary);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--emerald-light);
+            color: var(--emerald-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-emerald);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--platinum);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-gold);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--gold-secondary);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* CARDS LUXUOSOS */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: var(--gradient-card);
+            padding: 50px 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-emerald {
+            background: var(--gradient-emerald-card);
+            border: 1px solid rgba(4, 99, 7, 0.2);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--gradient-gold);
+        }
+
+        .card-emerald::before {
+            background: var(--gradient-emerald);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .card-emerald::after {
+            background: radial-gradient(circle, rgba(4, 99, 7, 0.1) 0%, transparent 70%);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-luxury);
+            border-color: var(--gold-primary);
+        }
+
+        .card-emerald:hover {
+            border-color: var(--emerald-light);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--carbon);
+            font-size: 32px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-gold);
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-emerald .card-icon {
+            background: var(--gradient-emerald);
+            box-shadow: var(--shadow-emerald);
+            color: white;
+        }
+
+        .card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-emerald h3 {
+            color: var(--emerald-light);
+        }
+
+        .card p {
+            color: var(--platinum);
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+            flex-grow: 1;
+        }
+
+        /* IMPACT SECTION */
+        .impact-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--gold-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            text-align: center;
+            padding: 120px 0;
+            background: var(--gradient-card);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--platinum);
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .cta-content p {
+            font-size: 20px;
+            line-height: 1.8;
+            color: var(--gold-secondary);
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 60px 0 30px;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-logo {
+            margin-bottom: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gold-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 300;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        .copyright {
+            color: var(--gold-secondary);
+            font-size: 14px;
+            margin-top: 30px;
+        }
+
+        /* LANGUAGE CONTENT */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        /* ESTILOS PARA TEXTO ÁRABE */
+        .arabic-text {
+            direction: rtl;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: right;
+        }
+
+        .arabic-text h1, 
+        .arabic-text h2, 
+        .arabic-text h3 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* ANIMAÇÕES DE ENTRADA */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-element {
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .language-selector {
+                position: relative;
+                top: 0;
+                right: 0;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-header h2 {
+                font-size: 28px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .impact-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-item {
+                min-width: 150px;
+            }
+            
+            .btn {
+                padding: 16px 32px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section-header h2 {
+                font-size: 24px;
+            }
+            
+            .card {
+                padding: 30px 20px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button class="lang-btn active" data-lang="pt">Português</button>
+        <button class="lang-btn" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ar">العربية</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Exclusive Wallet</h1>
+                <span>PREMIUM DIGITAL</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section - Portuguese -->
+    <section class="hero lang-content active" id="hero-pt">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-element">Mulheres <span>Influenciando o Mundo</span>: Uma Revolução Digital no Mundo Árabe</h1>
+                <p class="animate-element delay-1">Exclusive Wallet: A primeira carteira digital premium projetada para conectar, apoiar e fortalecer mulheres líderes na Arábia Saudita e no mundo árabe.</p>
+                <a href="#cta-pt" class="btn btn-primary animate-element delay-2">Seja Parceira da Revolução Digital</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section - English -->
+    <section class="hero lang-content" id="hero-en">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-element">Women <span>Influencing the World</span>: A Digital Revolution in the Arab World</h1>
+                <p class="animate-element delay-1">Exclusive Wallet: The first premium digital wallet designed to connect, support, and strengthen women leaders in Saudi Arabia and the Arab world.</p>
+                <a href="#cta-en" class="btn btn-primary animate-element delay-2">Join the Digital Revolution</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section - Arabic -->
+    <section class="hero lang-content" id="hero-ar">
+        <div class="container">
+            <div class="hero-content arabic-text">
+                <h1 class="animate-element"><span>النساء</span> تؤثر في العالم: ثورة رقمية في العالم العربي</h1>
+                <p class="animate-element delay-1">Exclusive Wallet: أول محفظة رقمية متميزة مصممة لربط ودعم وتمكين النساء القياديات في المملكة العربية السعودية والعالم العربي.</p>
+                <a href="#cta-ar" class="btn btn-primary animate-element delay-2">انضمي إلى الثورة الرقمية</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problema/Oportunidade Section - Portuguese -->
+    <section id="problema-pt" class="lang-content active">
+        <div class="container">
+            <div class="section-header animate-element">
+                <h2>Oportunidade Histórica</h2>
+                <p>O crescente movimento de mulheres empreendedoras e líderes no Oriente Médio está transformando o cenário econômico da região.</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card animate-element delay-1">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Crescimento Exponencial</h3>
+                    <p>Nos últimos 5 anos, o número de mulheres empreendedoras no Golfo aumentou em 35%, criando uma nova geração de líderes empresariais que estão redefinindo o futuro econômico da região.</p>
+                </div>
+                
+                <div class="card animate-element delay-2">
+                    <div class="card-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Barreiras Tecnológicas</h3>
+                    <p>Apesar do progresso, ainda existem lacunas significativas no acesso a tecnologia financeira avançada e redes de networking exclusivas que limitam o potencial de crescimento dessas líderes.</p>
+                </div>
+                
+                <div class="card animate-element delay-3">
+                    <div class="card-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Falta de Conexões Estratégicas</h3>
+                    <p>Muitas mulheres talentosas carecem de acesso a redes de influência e mentoria que poderiam acelerar seus projetos e iniciativas empresariais em escala global.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problema/Oportunidade Section - English -->
+    <section id="problema-en" class="lang-content">
+        <div class="container">
+            <div class="section-header animate-element">
+                <h2>Historic Opportunity</h2>
+                <p>The growing movement of women entrepreneurs and leaders in the Middle East is transforming the region's economic landscape.</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card animate-element delay-1">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Exponential Growth</h3>
+                    <p>Over the past 5 years, the number of women entrepreneurs in the Gulf has increased by 35%, creating a new generation of business leaders who are redefining the region's economic future.</p>
+                </div>
+                
+                <div class="card animate-element delay-2">
+                    <div class="card-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Technological Barriers</h3>
+                    <p>Despite progress, significant gaps still exist in access to advanced financial technology and exclusive networking networks that limit the growth potential of these leaders.</p>
+                </div>
+                
+                <div class="card animate-element delay-3">
+                    <div class="card-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Lack of Strategic Connections</h3>
+                    <p>Many talented women lack access to influence networks and mentorship that could accelerate their projects and business initiatives on a global scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problema/Oportunidade Section - Arabic -->
+    <section id="problema-ar" class="lang-content">
+        <div class="container">
+            <div class="section-header animate-element arabic-text">
+                <h2>فرصة تاريخية</h2>
+                <p>الحركة المتزايدة لرائدات الأعمال والقياديات في الشرق الأوسط تعمل على تحويل المشهد الاقتصادي في المنطقة.</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card animate-element delay-1 arabic-text">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>نمو متسارع</h3>
+                    <p>خلال السنوات الخمس الماضية، زاد عدد رائدات الأعمال في الخليج بنسبة 35٪، مما خلق جيلًا جديدًا من القياديات اللواتي يعيدن تعريف المستقبل الاقتصادي للمنطقة.</p>
+                </div>
+                
+                <div class="card animate-element delay-2 arabic-text">
+                    <div class="card-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>عوائق تكنولوجية</h3>
+                    <p>على الرغم من التقدم، لا تزال هناك فجوات كبيرة في الوصول إلى التكنولوجيا المالية المتقدمة وشبكات التواصل الحصرية التي تحد من إمكانات نمو هؤلاء القياديات.</p>
+                </div>
+                
+                <div class="card animate-element delay-3 arabic-text">
+                    <div class="card-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>نقص في الاتصالات الاستراتيجية</h3>
+                    <p>تفتقر العديد من النساء الموهوبات إلى الوصول إلى شبكات النفوذ والإرشاد التي يمكن أن تسرع مشاريعهن ومبادراتهن التجارية على نطاق عالمي.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solução Section - Portuguese -->
+    <section id="solucao-pt" class="lang-content active">
+        <div class="container">
+            <div class="section-header animate-element">
+                <h2>A Solução Exclusive Wallet</h2>
+                <p>Uma plataforma digital premium que combina tecnologia financeira de ponta com recursos exclusivos de networking e desenvolvimento profissional.</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card card-emerald animate-element delay-1">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Segurança Premium</h3>
+                    <p>Carteira digital com criptografia de nível bancário e design intuitivo, desenvolvida especificamente para atender às necessidades das mulheres líderes do mundo árabe.</p>
+                </div>
+                
+                <div class="card card-emerald animate-element delay-2">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Networking Exclusivo</h3>
+                    <p>Plataforma de conexão entre mulheres influentes, investidoras e empreendedoras, facilitando colaborações estratégicas e oportunidades de negócios.</p>
+                </div>
+                
+                <div class="card card-emerald animate-element delay-3">
+                    <div class="card-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Tokenização de Projetos</h3>
+                    <p>Possibilidade de criar tokens personalizados para iniciativas femininas, permitindo financiamento coletivo e valorização de projetos liderados por mulheres.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solução Section - English -->
+    <section id="solucao-en" class="lang-content">
+        <div class="container">
+            <div class="section-header animate-element">
+                <h2>The Exclusive Wallet Solution</h2>
+                <p>A premium digital platform that combines cutting-edge financial technology with exclusive networking and professional development resources.</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card card-emerald animate-element delay-1">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Premium Security</h3>
+                    <p>Digital wallet with bank-level encryption and intuitive design, specifically developed to meet the needs of women leaders in the Arab world.</p>
+                </div>
+                
+                <div class="card card-emerald animate-element delay-2">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Exclusive Networking</h3>
+                    <p>Connection platform between influential women, investors and entrepreneurs, facilitating strategic collaborations and business opportunities.</p>
+                </div>
+                
+                <div class="card card-emerald animate-element delay-3">
+                    <div class="card-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Project Tokenization</h3>
+                    <p>Ability to create custom tokens for women's initiatives, enabling crowdfunding and valuation of women-led projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solução Section - Arabic -->
+    <section id="solucao-ar" class="lang-content">
+        <div class="container">
+            <div class="section-header animate-element arabic-text">
+                <h2>حل Exclusive Wallet</h2>
+                <p>منصة رقمية متميزة تجمع بين أحدث التقنيات المالية مع موارد حصرية للتواصل والتطوير المهني.</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card card-emerald animate-element delay-1 arabic-text">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>أمان متميز</h3>
+                    <p>محفظة رقمية بتشفير على مستوى البنوك وتصميم بديهي، تم تطويرها خصيصًا لتلبية احتياجات القياديات في العالم العربي.</p>
+                </div>
+                
+                <div class="card card-emerald animate-element delay-2 arabic-text">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>شبكة علاقات حصرية</h3>
+                    <p>منصة للتواصل بين النساء المؤثرات والمستثمرات ورائدات الأعمال، مما يسهل التعاون الاستراتيجي وفرص الأعمال.</p>
+                </div>
+                
+                <div class="card card-emerald animate-element delay-3 arabic-text">
+                    <div class="card-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>تحويل المشاريع إلى رموز</h3>
+                    <p>إمكانية إنشاء رموز مخصصة للمبادرات النسائية، مما يتيح التمويل الجماعي وتقييم المشاريع التي تقودها النساء.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impacto Section - Portuguese -->
+    <section id="impacto-pt" class="lang-content active">
+        <div class="container">
+            <div class="section-header animate-element">
+                <h2>Impacto Transformador</h2>
+                <p>Os benefícios da Exclusive Wallet vão além da tecnologia, criando um ecossistema de <strong>influência feminina global</strong> no mundo árabe.</p>
+            </div>
+            
+            <div class="impact-stats">
+                <div class="stat-item animate-element delay-1">
+                    <div class="stat-number">+45%</div>
+                    <div class="stat-label">Acesso Financeiro</div>
+                </div>
+                
+                <div class="stat-item animate-element delay-2">
+                    <div class="stat-number">3.2x</div>
+                    <div class="stat-label">Rede de Contatos</div>
+                </div>
+                
+                <div class="stat-item animate-element delay-3">
+                    <div class="stat-number">+60%</div>
+                    <div class="stat-label">Inovação Digital</div>
+                </div>
+                
+                <div class="stat-item animate-element delay-4">
+                    <div class="stat-number">2.5x</div>
+                    <div class="stat-label">Oportunidades</div>
+                </div>
+            </div>
+            
+            <div class="cards-grid" style="margin-top: 70px;">
+                <div class="card animate-element delay-1">
+                    <h3>Influência Financeira</h3>
+                    <p>Controle total sobre ativos digitais e investimentos, com ferramentas avançadas de gestão financeira desenvolvidas para o perfil das mulheres influentes árabes.</p>
+                </div>
+                
+                <div class="card animate-element delay-2">
+                    <h3>Fortalecimento de Redes</h3>
+                    <p>Conexões estratégicas entre mulheres influentes em diferentes setores, criando uma rede de apoio e colaboração que transcende fronteiras geográficas.</p>
+                </div>
+                
+                <div class="card animate-element delay-3">
+                    <h3>Inovação e Inclusão</h3>
+                    <p>Democratização do acesso à tecnologia blockchain e financeira, posicionando as mulheres árabes na vanguarda da revolução digital global.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impacto Section - English -->
+    <section id="impacto-en" class="lang-content">
+        <div class="container">
+            <div class="section-header animate-element">
+                <h2>Transformative Impact</h2>
+                <p>The benefits of Exclusive Wallet go beyond technology, creating an ecosystem of <strong>global female influence</strong> in the Arab world.</p>
+            </div>
+            
+            <div class="impact-stats">
+                <div class="stat-item animate-element delay-1">
+                    <div class="stat-number">+45%</div>
+                    <div class="stat-label">Financial Access</div>
+                </div>
+                
+                <div class="stat-item animate-element delay-2">
+                    <div class="stat-number">3.2x</div>
+                    <div class="stat-label">Network</div>
+                </div>
+                
+                <div class="stat-item animate-element delay-3">
+                    <div class="stat-number">+60%</div>
+                    <div class="stat-label">Digital Innovation</div>
+                </div>
+                
+                <div class="stat-item animate-element delay-4">
+                    <div class="stat-number">2.5x</div>
+                    <div class="stat-label">Opportunities</div>
+                </div>
+            </div>
+            
+            <div class="cards-grid" style="margin-top: 70px;">
+                <div class="card animate-element delay-1">
+                    <h3>Financial Influence</h3>
+                    <p>Full control over digital assets and investments, with advanced financial management tools developed for the profile of influential Arab women.</p>
+                </div>
+                
+                <div class="card animate-element delay-2">
+                    <h3>Network Strengthening</h3>
+                    <p>Strategic connections between influential women in different sectors, creating a support and collaboration network that transcends geographical boundaries.</p>
+                </div>
+                
+                <div class="card animate-element delay-3">
+                    <h3>Innovation and Inclusion</h3>
+                    <p>Democratization of access to blockchain and financial technology, positioning Arab women at the forefront of the global digital revolution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impacto Section - Arabic -->
+    <section id="impacto-ar" class="lang-content">
+        <div class="container">
+            <div class="section-header animate-element arabic-text">
+                <h2>تأثير تحويلي</h2>
+                <p>فوائد Exclusive Wallet تتجاوز التكنولوجيا، حيث تخلق نظامًا بيئيًا <strong>لتأثير المرأة العالمي</strong> في العالم العربي.</p>
+            </div>
+            
+            <div class="impact-stats">
+                <div class="stat-item animate-element delay-1">
+                    <div class="stat-number">+45%</div>
+                    <div class="stat-label arabic-text">الوصول المالي</div>
+                </div>
+                
+                <div class="stat-item animate-element delay-2">
+                    <div class="stat-number">3.2x</div>
+                    <div class="stat-label arabic-text">شبكة العلاقات</div>
+                </div>
+                
+                <div class="stat-item animate-element delay-3">
+                    <div class="stat-number">+60%</div>
+                    <div class="stat-label arabic-text">الابتكار الرقمي</div>
+                </div>
+                
+                <div class="stat-item animate-element delay-4">
+                    <div class="stat-number">2.5x</div>
+                    <div class="stat-label arabic-text">الفرص</div>
+                </div>
+            </div>
+            
+            <div class="cards-grid" style="margin-top: 70px;">
+                <div class="card animate-element delay-1 arabic-text">
+                    <h3>التأثير المالي</h3>
+                    <p>تحكم كامل في الأصول الرقمية والاستثمارات، مع أدوات متقدمة لإدارة المالية مصممة خصيصًا لملف النساء العربيات المؤثرات.</p>
+                </div>
+                
+                <div class="card animate-element delay-2 arabic-text">
+                    <h3>تعزيز الشبكات</h3>
+                    <p>اتصالات استراتيجية بين النساء المؤثرات في مختلف القطاعات، مما يخلق شبكة دعم وتعاون تتجاوز الحدود الجغرافية.</p>
+                </div>
+                
+                <div class="card animate-element delay-3 arabic-text">
+                    <h3>الابتكار والشمول</h3>
+                    <p>دمقرطة الوصول إلى تكنولوجيا البلوكشين والتمويل، مما يضع المرأة العربية في طليعة الثورة الرقمية العالمية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section - Portuguese -->
+    <section id="cta-pt" class="cta-section lang-content active">
+        <div class="container">
+            <div class="cta-content animate-element">
+                <h2>Junte-se à Revolução Digital Feminina</h2>
+                <p>Seja uma das pioneiras na transformação digital do mundo árabe. Conecte-se, cresça e influencie com a Exclusive Wallet.</p>
+                <a href="#" class="btn btn-primary">Solicite Acesso Exclusivo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section - English -->
+    <section id="cta-en" class="cta-section lang-content">
+        <div class="container">
+            <div class="cta-content animate-element">
+                <h2>Join the Female Digital Revolution</h2>
+                <p>Be one of the pioneers in the digital transformation of the Arab world. Connect, grow and influence with Exclusive Wallet.</p>
+                <a href="#" class="btn btn-primary">Request Exclusive Access</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section - Arabic -->
+    <section id="cta-ar" class="cta-section lang-content">
+        <div class="container">
+            <div class="cta-content animate-element arabic-text">
+                <h2>انضمي إلى الثورة الرقمية النسائية</h2>
+                <p>كوني من الرواد في التحول الرقمي للعالم العربي. تواصلي، وتطوري، وأثري مع Exclusive Wallet.</p>
+                <a href="#" class="btn btn-primary">اطلبي الوصول الحصري</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - Portuguese -->
+    <footer class="lang-content active" id="footer-pt">
+        <div class="container">
+            <div class="footer-logo">
+                <h2 style="font-family: 'Cinzel', serif; color: var(--platinum); font-size: 24px;">Exclusive Wallet</h2>
+                <span style="color: var(--gold-secondary); font-size: 12px; letter-spacing: 4px;">PREMIUM DIGITAL</span>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Sobre Nós</a>
+                <a href="#">Recursos</a>
+                <a href="#">Parcerias</a>
+                <a href="#">Privacidade</a>
+                <a href="#">Contato</a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Exclusive Wallet Premium. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Footer - English -->
+    <footer class="lang-content" id="footer-en">
+        <div class="container">
+            <div class="footer-logo">
+                <h2 style="font-family: 'Cinzel', serif; color: var(--platinum); font-size: 24px;">Exclusive Wallet</h2>
+                <span style="color: var(--gold-secondary); font-size: 12px; letter-spacing: 4px;">PREMIUM DIGITAL</span>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Features</a>
+                <a href="#">Partnerships</a>
+                <a href="#">Privacy</a>
+                <a href="#">Contact</a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Exclusive Wallet Premium. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Footer - Arabic -->
+    <footer class="lang-content" id="footer-ar">
+        <div class="container">
+            <div class="footer-logo">
+                <h2 style="font-family: 'Cinzel', serif; color: var(--platinum); font-size: 24px;">Exclusive Wallet</h2>
+                <span style="color: var(--gold-secondary); font-size: 12px; letter-spacing: 4px;">PREMIUM DIGITAL</span>
+            </div>
+            
+            <div class="footer-links arabic-text">
+                <a href="#">من نحن</a>
+                <a href="#">الميزات</a>
+                <a href="#">الشراكات</a>
+                <a href="#">الخصوصية</a>
+                <a href="#">اتصل بنا</a>
+            </div>
+            
+            <div class="copyright arabic-text">
+                &copy; 2023 Exclusive Wallet Premium. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const selectedLang = this.getAttribute('data-lang');
+                    
+                    // Update active button
+                    langButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Hide all language content
+                    document.querySelectorAll('.lang-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Show only content for selected language
+                    document.querySelectorAll(`.lang-content`).forEach(content => {
+                        if (content.id.includes(selectedLang)) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    // Get current language
+                    const currentLang = document.querySelector('.lang-btn.active').getAttribute('data-lang');
+                    const languageSpecificId = targetId + '-' + currentLang;
+                    
+                    const targetElement = document.querySelector(languageSpecificId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add('animate-element');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            const elementsToAnimate = document.querySelectorAll('.card, .stat-item, .section-header');
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
